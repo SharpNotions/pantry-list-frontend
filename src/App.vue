@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <h1>{{ msg }}</h1>
+    <h1>{{ computedMsg }}</h1>
+    <button v-on:click="incrementCounter()">Increment</button>
+    <button v-on:click="incrementCounterAsync()">Increment Async</button>
     <h2>Essential Links</h2>
     <ul>
       <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
@@ -24,7 +26,22 @@ export default {
   name: 'app',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      count: 0
+    }
+  },
+  computed: {
+    computedMsg () {
+      return `You have pressed the button ${this.count} times.`
+    }
+  },
+  methods: {
+    incrementCounter () {
+      this.count = this.count + 1
+    },
+    async incrementCounterAsync () {
+      this.count = await new Promise((resolve, reject) =>
+        setTimeout(() => resolve(this.count + 1), 1000)
+      )
     }
   }
 }
