@@ -1,7 +1,7 @@
 <template>
   <div id="login">
     <p>Halt!  Who goes there!?</p>
-    <button v-on:click="login()">Login with Google</button>
+    <div id="g-signin2"> </div>
   </div>
 </template>
 
@@ -12,8 +12,24 @@ export default {
   name: 'login',
   data () {
     return {
-      error: ''
+      error: '',
+      gapi: undefined
     }
+  },
+  mounted() {
+    if (auth.isAuthorized()) {
+      this.$router.replace(this.$route.query.redirect || '/')
+    }
+    if (!window.gapi) {
+      return;
+    } else {
+      this.gapi = window.gapi;
+    }
+
+    gapi.signin2.render('g-signin2', {
+      scope: 'profile email',
+      onsuccess: this.onSignIn
+    });
   },
   methods: {
     async login () {
@@ -23,9 +39,25 @@ export default {
       } catch (error) {
         this.error = 'We ran into an error while attempting to log you in.'
       }
+    },
+    onSignIn (user) {
+      const hd = user.getHostedDomain();
+      if (hd === 'sharpnotions.com') {
+        var id_token = user.getAuthResponse().id_token;
+        auth.authorize(id_token);
+        this.$router.replace(this.$route.query.redirect || '/')
+      } else {
+        auth.unauthorize();
+        this.gapi.auth2.getAuthInstance().disconnect();
+      }
     }
   }
 }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+ #g-signin2 {
+   display: flex;
+   justify-content: center;
+ }
+</style>
