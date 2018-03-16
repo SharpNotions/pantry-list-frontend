@@ -1,14 +1,14 @@
-let isAuthorized = false
+import Cookie from 'js-cookie'
+
 export default {
-  async authorize () {
-    isAuthorized = true
-    return Promise.resolve(isAuthorized)
+  authorize (token) {
+    const inTwentyFourHours = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+    Cookie.set('id_token', token, {expires: inTwentyFourHours})
   },
-  async unauthorize () {
-    isAuthorized = false
-    return Promise.resolve(isAuthorized)
+  unauthorize () {
+    Cookie.remove('id_token')
   },
   isAuthorized () {
-    return isAuthorized
+    return !!Cookie.get('id_token')
   }
 }
