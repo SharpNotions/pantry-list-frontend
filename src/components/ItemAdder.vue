@@ -1,5 +1,5 @@
 <template>
-  <div class="list">
+  <div class="item-adder">
     <input
       type="text"
       @keyup.enter="submit()"
@@ -40,4 +40,12 @@ export default {
 }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+  .item-adder {
+    display: flex;
+
+    input {
+      flex-grow: 1;
+    }
+  }
+</style>

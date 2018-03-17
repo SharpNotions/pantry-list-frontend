@@ -1,6 +1,5 @@
 <template>
   <div class="list">
-    <h2>Shopping List</h2>
     <ItemAdder :add-item="addItem"></ItemAdder>
     <p v-if="loading">Loading...</p>
     <ul>
@@ -38,4 +37,8 @@ export default {
 }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+  ul {
+    padding: 0 0 0 1em;
+  }
+</style>
