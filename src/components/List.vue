@@ -1,6 +1,7 @@
 <template>
   <div class="list">
-    <h2>Shopping List</h2>
+    <ItemAdder :add-item="addItem"></ItemAdder>
+    <p v-if="loading">Loading...</p>
     <ul>
       <li v-for="item in items" :key="item.id">
         {{ item.label }} - {{ item.votes }} votes
@@ -10,19 +11,34 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex'
+import store from '@/store'
+import ItemAdder from '@/components/ItemAdder'
+
 export default {
   name: 'list',
-  data () {
-    return {
-      items: [
-        { id: 0, votes: 0, label: 'Item 1' },
-        { id: 1, votes: 0, label: 'Item 2' },
-        { id: 2, votes: 0, label: 'Item 3' },
-        { id: 3, votes: 0, label: 'Item 4' }
-      ]
-    }
+  components: {
+    ItemAdder
+  },
+  computed: {
+    ...mapState('list', {
+      loading: state => state.loading,
+      items: state => state.items
+    })
+  },
+  methods: {
+    ...mapActions('list', [
+      'addItem'
+    ])
+  },
+  mounted () {
+    this.$store.dispatch('list/listItems')
   }
 }
 </script>
 
-<style lang="scss">/style>
+<style lang="scss">
+  ul {
+    padding: 0 0 0 1em;
+  }
+</style>

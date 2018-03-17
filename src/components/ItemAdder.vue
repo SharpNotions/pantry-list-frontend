@@ -1,0 +1,51 @@
+<template>
+  <div class="item-adder">
+    <input
+      type="text"
+      @keyup.enter="submit()"
+      v-model="newLabel"
+    />
+    <button
+      :disabled="canSubmit"
+      @keyPress.enter="submit()"
+      @click="submit()">+
+    </button>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'item-adder',
+  props: {
+    addItem: Function
+  },
+  data () {
+    return {
+      newLabel: ''
+    }
+  },
+  computed: {
+    canSubmit () {
+      return !this.newLabel.length
+    }
+  },
+  methods: {
+    async submit () {
+      await this.addItem(
+        this.newLabel
+      )
+      this.newLabel = ''
+    }
+  }
+}
+</script>
+
+<style lang="scss">
+  .item-adder {
+    display: flex;
+
+    input {
+      flex-grow: 1;
+    }
+  }
+</style>
