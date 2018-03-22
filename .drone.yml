@@ -7,6 +7,7 @@ pipeline:
 
   build:
     image: plugins/docker
+    alias: pantry-list-frontend.now.sh
     repo: sharpnotionsllc/pantry-list-frontend
     dockerfile: Dockerfile.build
     tags:
