@@ -1,4 +1,10 @@
 pipeline:
+  test:
+    image: node:latest
+    commands:
+      - npm install
+      - npm test
+
   build:
     image: plugins/docker
     repo: sharpnotionsllc/pantry-list-frontend
