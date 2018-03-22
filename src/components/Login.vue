@@ -12,29 +12,28 @@ export default {
   name: 'login',
   data () {
     return {
-      error: '',
-      gapi: undefined
+      error: ''
     }
   },
-  mounted() {
+  mounted () {
     if (auth.isAuthorized()) {
       this.$router.replace(this.$route.query.redirect || '/')
     }
     if (!window.gapi) {
-      return;
+      throw new Error('Google API is missing.  You can\'t log in without it 😦')
     }
 
-    gapi.signin2.render('g-signin2', {
+    window.gapi.signin2.render('g-signin2', {
       scope: 'profile email',
       onsuccess: this.onSignIn
-    });
+    })
   },
   methods: {
     onSignIn (user) {
-      const hd = user.getHostedDomain();
+      const hd = user.getHostedDomain()
       if (hd === 'sharpnotions.com') {
-        var id_token = user.getAuthResponse().id_token;
-        auth.authorize(id_token);
+        const idToken = user.getAuthResponse().id_token
+        auth.authorize(idToken)
         this.$router.replace(this.$route.query.redirect || '/')
       }
     }

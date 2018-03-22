@@ -10,9 +10,11 @@ npm install
 
 # serve with hot reload at localhost:8080
 npm run dev
-
-# build for production with minification
-npm run build
+```
+# Testing
+```bash
+npm test
 ```
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+# Deploying
+Pushes to master will trigger builds + deploys via Drone and Zeit Now (respectively).
