@@ -6,8 +6,9 @@ ENV PATH /usr/src/app/node_modules:$PATH
 ADD src /usr/src/app/src
 ADD .babelrc /usr/src/app
 ADD package.json /usr/src/app
+ADD package-lock.json /usr/src/app
 ADD webpack.config.js /usr/src/app
-RUN npm install && npm run build
+RUN npm install --production && npm run build
 
 # NGINX image
 FROM nginx:latest
