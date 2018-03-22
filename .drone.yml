@@ -1,0 +1,28 @@
+pipeline:
+  test:
+    image: node:latest
+    commands:
+      - npm install
+      - npm test
+
+  build:
+    image: plugins/docker
+    repo: sharpnotionsllc/pantry-list-frontend
+    dockerfile: Dockerfile.build
+    tags:
+      - latest
+    secrets: [ docker_username, docker_password ]
+    when:
+      branch: master
+      event: push
+
+  deploy_now:
+    image: lucap/drone-now
+    team: sharpnotions
+    type: docker
+    deploy_name: pantry-list-frontend
+    secrets: [ now_token ]
+    cleanup: true
+    when:
+      branch: master
+      event: push
