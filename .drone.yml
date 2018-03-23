@@ -21,7 +21,7 @@ pipeline:
     team: sharpnotions
     type: docker
     deploy_name: pantry-list-frontend
-    alias: pantry-list-frontend.now.sh
+    alias: pantry-list-frontend
     secrets: [ now_token ]
     cleanup: true
     when:
