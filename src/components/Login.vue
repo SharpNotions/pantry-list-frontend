@@ -1,6 +1,6 @@
 <template>
   <div id="login">
-    <p>Halt!  Who goes there!?</p>
+    <p>Halt!  Who goes there!?!?</p>
     <div id="g-signin2"> </div>
   </div>
 </template>
