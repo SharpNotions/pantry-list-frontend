@@ -17,7 +17,7 @@ pipeline:
       event: push
 
   deploy_now:
-    image: sharpnotionsllc/drone-now
+    image: sharpnotionsllc/drone-now:latest
     team: sharpnotions
     type: docker
     deploy_name: pantry-list-frontend
