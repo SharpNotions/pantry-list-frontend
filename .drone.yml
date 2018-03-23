@@ -1,22 +1,23 @@
 pipeline:
-  test:
-    image: node:latest
-    commands:
-      - npm install
-      - npm test
-
-  build:
-    image: plugins/docker
-    repo: sharpnotionsllc/pantry-list-frontend
-    dockerfile: Dockerfile.build
-    tags:
-      - latest
-    secrets: [ docker_username, docker_password ]
-    when:
-      branch: master
-      event: push
+  # test:
+  #   image: node:latest
+  #   commands:
+  #     - npm install
+  #     - npm test
+  #
+  # build:
+  #   image: plugins/docker
+  #   repo: sharpnotionsllc/pantry-list-frontend
+  #   dockerfile: Dockerfile.build
+  #   tags:
+  #     - latest
+  #   secrets: [ docker_username, docker_password ]
+  #   when:
+  #     branch: master
+  #     event: push
 
   deploy_now:
+    pull: true
     image: sharpnotionsllc/drone-now:latest
     team: sharpnotions
     type: docker
@@ -25,6 +26,6 @@ pipeline:
     secrets: [ now_token ]
     cleanup: true
     public: true
-    when:
-      branch: master
-      event: push
+    # when:
+    #   branch: master
+    #   event: push
