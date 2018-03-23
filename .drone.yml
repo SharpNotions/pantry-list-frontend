@@ -25,6 +25,7 @@ pipeline:
     secrets: [ now_token ]
     cleanup: true
     public: true
+    pull: true
     when:
       branch: master
       event: push
