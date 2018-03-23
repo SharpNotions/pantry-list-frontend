@@ -24,6 +24,7 @@ pipeline:
     alias: pantry-list-frontend
     secrets: [ now_token ]
     cleanup: true
+    public: true
     when:
       branch: master
       event: push
