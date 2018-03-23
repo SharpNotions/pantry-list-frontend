@@ -17,7 +17,7 @@ pipeline:
       event: push
 
   deploy_now:
-    image: lucap/drone-now
+    image: sharpnotionsllc/drone-now
     team: sharpnotions
     type: docker
     deploy_name: pantry-list-frontend
