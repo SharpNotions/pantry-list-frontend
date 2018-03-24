@@ -1,8 +1,15 @@
 <template>
-  <div id="app">
-    <h1>Pantry List</h1>
-    <router-view></router-view>
-  </div>
+  <v-app>
+    <v-toolbar app fix>
+      <v-toolbar-title>Pantry List</v-toolbar-title>
+    </v-toolbar>
+    <v-content>
+      <v-container>
+        <router-view></router-view>
+      </v-container>
+    </v-content>
+    <v-footer app></v-footer>
+  </v-app>
 </template>
 
 <script>
@@ -12,23 +19,14 @@ export default {
 </script>
 
 <style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-  margin-top: 60px;
-  max-width: 350px;
-  margin-left: auto;
-  margin-right: auto;
-}
+  #app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #2c3e50;
 
-h1, h2 {
-  text-align: center;
-  font-weight: normal;
-}
-
-a {
-  color: #42b983;
-}
+    .container {
+      max-width: 600px;
+    }
+  }
 </style>

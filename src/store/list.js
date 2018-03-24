@@ -32,8 +32,8 @@ const actions = {
   async addItem ({ commit }, label) {
     commit('loading', true)
     try {
-      await api.addItem({ label })
-      commit('setItems', await api.listItems())
+      const items = await api.addItem({ label })
+      commit('setItems', items)
       commit('loading', false)
     } catch (error) {
       commit('error', error.message)

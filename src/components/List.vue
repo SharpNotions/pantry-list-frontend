@@ -1,18 +1,22 @@
 <template>
-  <div class="list">
+  <div>
     <ItemAdder :add-item="addItem"></ItemAdder>
-    <p v-if="loading">Loading...</p>
-    <ul>
-      <li v-for="item in items" :key="item.id">
-        {{ item.label }} - {{ item.votes }} votes
-      </li>
-    </ul>
+    <v-layout justify-center="">
+      <v-progress-circular indeterminate v-if="loading"></v-progress-circular>
+    </v-layout>
+    <v-list v-if="!loading">
+      <v-list-tile v-for="item in items" :key="item.id">
+        <v-list-tile-content>
+          <v-list-tile-title v-text="item.label"></v-list-tile-title>
+        </v-list-tile-content>
+        <v-list-tile-action>{{ item.votes }}</v-list-tile-action>
+      </v-list-tile>
+    </v-list>
   </div>
 </template>
 
 <script>
 import { mapActions, mapState } from 'vuex'
-import store from '@/store'
 import ItemAdder from '@/components/ItemAdder'
 
 export default {
@@ -36,9 +40,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-  ul {
-    padding: 0 0 0 1em;
-  }
-</style>
