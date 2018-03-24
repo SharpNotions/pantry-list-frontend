@@ -1,8 +1,8 @@
 <template>
-  <div id="login">
+  <v-layout align-center column>
     <p>Halt!  Who goes there!?!?</p>
     <div id="g-signin2"> </div>
-  </div>
+  </v-layout>
 </template>
 
 <script>

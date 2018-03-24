@@ -1,19 +1,23 @@
 <template>
-  <div class="item-adder">
-    <input
-      type="text"
-      @keyup.enter="submit()"
+  <v-layout row justify-center align-center>
+    <v-text-field
+      label="New Item"
       v-model="newLabel"
-    />
-    <button
-      :disabled="canSubmit"
+      @keyup.enter="submit()"
+    ></v-text-field>
+    <v-btn flat icon small
+      color="primary"
+      :disabled="!canSubmit"
       @keyPress.enter="submit()"
-      @click="submit()">+
-    </button>
-  </div>
+      @click="submit()">
+      <v-icon>add</v-icon>
+    </v-btn>
+  </v-layout>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'item-adder',
   props: {
@@ -26,8 +30,9 @@ export default {
   },
   computed: {
     canSubmit () {
-      return !this.newLabel.length
-    }
+      return this.newLabel.length && !this.loading
+    },
+    ...mapState('list', ['loading'])
   },
   methods: {
     async submit () {
@@ -39,13 +44,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-  .item-adder {
-    display: flex;
-
-    input {
-      flex-grow: 1;
-    }
-  }
-</style>

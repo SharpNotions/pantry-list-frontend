@@ -1,4 +1,4 @@
-async function resolveEventually (data, waitMs = 1000) {
+async function resolveEventually (data, waitMs = 500) {
   return new Promise((resolve, reject) =>
     setTimeout(() => resolve(data), waitMs))
 }
