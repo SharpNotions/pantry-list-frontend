@@ -1,9 +1,9 @@
 import Cookie from 'js-cookie'
 
 export default {
-  authorize (token) {
-    const inTwentyFourHours = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-    Cookie.set('id_token', token, {expires: inTwentyFourHours})
+  authorize (token, secondsUntilExpiration) {
+    const expirationDate = new Date(new Date().getTime() + (secondsUntilExpiration * 1000));
+    Cookie.set('id_token', token, {expires: expirationDate})
   },
   unauthorize () {
     Cookie.remove('id_token')
