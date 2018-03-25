@@ -5,7 +5,8 @@ export default {
     return fetch('/api/items', {
       headers: {
         authorization: `Bearer ${Cookie.get('id_token')}`
-      }
+      },
+      credentials: 'include'
     }).then(response => response.json())
   }
 }
