@@ -1,4 +1,5 @@
-import api from '@/api/list-mock'
+// import api from '@/api/list-mock'
+import api from '@/api/list'
 
 const state = {
   alert: '',

@@ -7,7 +7,7 @@
     <v-list v-if="!loading">
       <v-list-tile v-for="item in items" :key="item.id">
         <v-list-tile-content>
-          <v-list-tile-title v-text="item.label"></v-list-tile-title>
+          <v-list-tile-title v-text="item.item_name"></v-list-tile-title>
         </v-list-tile-content>
         <v-list-tile-action>{{ item.votes }}</v-list-tile-action>
       </v-list-tile>
