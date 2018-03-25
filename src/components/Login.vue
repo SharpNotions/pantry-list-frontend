@@ -32,8 +32,8 @@ export default {
     onSignIn (user) {
       const hd = user.getHostedDomain()
       if (hd === 'sharpnotions.com') {
-        const idToken = user.getAuthResponse().id_token
-        auth.authorize(idToken)
+        const { id_token, expires_in } = user.getAuthResponse()
+        auth.authorize(id_token, expires_in)
         this.$router.replace(this.$route.query.redirect || '/')
       }
     }
