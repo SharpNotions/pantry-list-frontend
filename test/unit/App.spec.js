@@ -1,9 +1,20 @@
-import { mount } from '@vue/test-utils'
+import { createLocalVue, mount } from '@vue/test-utils'
 import App from 'src/App'
+import VueRouter from 'vue-router'
+import Vuetify from 'vuetify'
 
 describe('App', () => {
+  let localVue
+  let wrapper
+
+  beforeEach(() => {
+    localVue = createLocalVue()
+    localVue.use(Vuetify)
+    localVue.use(VueRouter)
+    wrapper = mount(App, { localVue, stubs: ['router-view'] })
+  })
+
   it('should render', () => {
-    const wrapper = mount(App)
-    expect(wrapper.html()).toContain('<v-app>')
+    expect(wrapper.isVueInstance()).toBe(true)
   })
 })
