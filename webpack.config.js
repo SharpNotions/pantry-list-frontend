@@ -79,7 +79,14 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     noInfo: true,
-    overlay: true
+    overlay: true,
+    proxy: {
+      '/api': {
+        target: 'https://pantry-list-api.herokuapp.com',
+        changeOrigin: true,
+        secure: false
+      }
+    }
   },
   performance: {
     hints: false
