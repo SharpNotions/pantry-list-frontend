@@ -1,5 +1,6 @@
 <template>
   <v-container grid-list-lg>
+    <v-snackbar v-model="hasError" color="red" top multi-line>{{ error }}</v-snackbar>
     <v-layout column>
       <v-flex>
         <v-layout justify-center align-center>
@@ -15,7 +16,7 @@
             ></v-select>
           </v-flex>
           <v-flex xs1>
-            <item-adder-button @add-item="addRankedItem"></item-adder-button>
+            <item-adder-button @add-item="createItem"></item-adder-button>
           </v-flex>
         </v-layout>
       </v-flex>
@@ -110,9 +111,13 @@ export default {
         this.setUnrankedItems(value)
       }
     },
+    hasError() {
+      return !!this.error
+    },
     ...mapState('itemRanking', [
       'rankedItems',
-      'unrankedItems'
+      'unrankedItems',
+      'error'
     ]),
     ...mapGetters('itemRanking', [
       'allItems'
@@ -142,7 +147,8 @@ export default {
       this.removeRankedItem(item)
     },
     ...mapActions('itemRanking', [
-      'loadItems'
+      'loadItems',
+      'createItem'
     ]),
     ...mapMutations('itemRanking', [
       'setRankedItems',
@@ -166,5 +172,8 @@ export default {
     .list {
       background: none;
     }
+  }
+  .snack .snack__content .btn .btn__content {
+    color: white
   }
 </style>

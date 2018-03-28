@@ -65,8 +65,21 @@ const mutations = {
 
 const actions = {
   async loadItems ({ commit }) {
-    commit('setUnrankedItems', await api.listItems())
-    commit('setRankedItems', [])
+    try {
+      commit('setUnrankedItems', await api.listItems())
+      commit('setRankedItems', [])
+    } catch (err) {
+      commit('setError', 'Something broke')
+      console.error(err)
+    }
+  },
+  async createItem ({ commit }, payload) {
+    try {
+      commit('addRankedItem', await api.createItem(payload))
+    } catch (err) {
+      commit('setError', 'Oh no, it didn\'t work')
+      console.error(err)
+    }
   }
 }
 
