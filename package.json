@@ -8,7 +8,14 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "format": "./node_modules/.bin/prettier --write 'src/**/*.@(js|vue)'",
     "test": "cross-env NODE_ENV=test ./node_modules/.bin/jest"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit":
+        "./node_modules/.bin/pretty-quick --staged 'src/**/*.@(js|vue)'"
+    }
   },
   "dependencies": {
     "js-cookie": "^2.2.0",
@@ -18,23 +25,13 @@
     "vuetify": "^1.0.10",
     "vuex": "^3.0.1"
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ],
+  "browserslist": ["> 1%", "last 2 versions", "not ie <= 8"],
   "jest": {
-    "moduleDirectories": [
-      "node_modules"
-    ],
+    "moduleDirectories": ["node_modules"],
     "moduleNameMapper": {
       "^src/(.*)": "<rootDir>/src/$1"
     },
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "vue"
-    ],
+    "moduleFileExtensions": ["js", "json", "vue"],
     "transform": {
       ".*\\.(vue)$": "vue-jest",
       ".*": "babel-jest"
@@ -51,15 +48,20 @@
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.7",
     "eslint": "^4.18.2",
+    "eslint-config-prettier": "^2.9.0",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-standard": "^3.0.1",
     "eslint-plugin-vue": "^4.3.0",
     "file-loader": "^1.1.4",
+    "husky": "^0.15.0-rc.13",
     "jest": "^22.4.3",
     "node-sass": "^4.5.3",
+    "prettier": "1.11.1",
+    "pretty-quick": "^1.4.1",
     "sass-loader": "^6.0.6",
     "vue-jest": "^2.1.1",
     "vue-loader": "^13.0.5",

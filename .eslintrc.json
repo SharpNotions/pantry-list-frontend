@@ -1,4 +1,5 @@
 {
+  "plugins": ["prettier", "standard"],
   "globals": {
     "beforeAll": true,
     "beforeEach": true,
@@ -11,6 +12,11 @@
   },
   "extends": [
     "standard",
+    "prettier",
+    "prettier/standard",
     "plugin:vue/essential"
-  ]
+  ],
+  "rules": {
+    "prettier/prettier": "error"
+  }
 }
