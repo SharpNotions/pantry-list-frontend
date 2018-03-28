@@ -1,8 +1,10 @@
 <template>
-  <v-layout align-center column>
-    <p>Halt!  Who goes there!?!?</p>
-    <div id="g-signin2"> </div>
-  </v-layout>
+  <v-container>
+    <v-layout align-center column>
+      <p>Halt!  Who goes there!?!?</p>
+      <div id="g-signin2"> </div>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>

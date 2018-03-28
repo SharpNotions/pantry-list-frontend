@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import List from '@/components/List'
 import Login from '@/components/Login'
+import ItemRanking from '@/components/ItemRanking'
 import auth from '@/auth'
 
 Vue.use(Router)
@@ -10,8 +10,8 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'List',
-      component: List,
+      name: 'ItemRanking',
+      component: ItemRanking,
       meta: {
         requiresAuth: true
       }

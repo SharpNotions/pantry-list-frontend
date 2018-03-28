@@ -4,9 +4,7 @@
       <v-toolbar-title>Pantry List</v-toolbar-title>
     </v-toolbar>
     <v-content>
-      <v-container>
-        <router-view></router-view>
-      </v-container>
+      <router-view></router-view>
     </v-content>
     <v-footer app></v-footer>
   </v-app>
@@ -26,7 +24,7 @@ export default {
     color: #2c3e50;
 
     .container {
-      max-width: 600px;
+      max-width: 720px;
     }
   }
 </style>

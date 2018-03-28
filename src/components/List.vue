@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-container>
     <ItemAdder :add-item="addItem"></ItemAdder>
     <v-layout justify-center="">
       <v-progress-circular indeterminate v-if="loading"></v-progress-circular>
@@ -12,7 +12,7 @@
         <v-list-tile-action>{{ item.votes }}</v-list-tile-action>
       </v-list-tile>
     </v-list>
-  </div>
+  </v-container>
 </template>
 
 <script>
