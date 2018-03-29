@@ -3,9 +3,11 @@ import UNRANKED_ITEMS from '@/graphql/UnrankedItems.gql'
 
 export default {
   listItems() {
-    return apolloClient.query({
-      query: UNRANKED_ITEMS
-    })
+    return apolloClient
+      .query({
+        query: UNRANKED_ITEMS
+      })
+      .then(({ data }) => data.items)
   },
   createItem(payload) {
     return fetch('/api/item', {
