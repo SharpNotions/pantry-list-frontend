@@ -30,7 +30,7 @@ const mutations = {
   setRankedItems (state, items) {
     state.rankedItems = items
   },
-  setUnrankedItems (state, items) {
+  setUnrankedItems(state, items) {
     state.unrankedItems = items
   },
   setLoading (state, isLoading) {
@@ -52,13 +52,19 @@ const mutations = {
   removeRankedItem (state, itemToRemove) {
     const index = findItemIndex(state.rankedItems, itemToRemove)
     if (index > -1) {
-      state.rankedItems.splice(index, 1)
+      state.rankedItems = [
+        ...state.rankedItems.slice(0, index),
+        ...state.rankedItems.slice(index + 1)
+      ]
     }
   },
   removeUnrankedItem (state, itemToRemove) {
     const index = findItemIndex(state.unrankedItems, itemToRemove)
     if (index > -1) {
-      state.unrankedItems.splice(index, 1)
+      state.unrankedItems = [
+        ...state.unrankedItems.slice(0, index),
+        ...state.unrankedItems.slice(index + 1)
+      ]
     }
   }
 }
