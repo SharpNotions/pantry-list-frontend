@@ -1,7 +1,11 @@
 <template>
   <v-app>
     <v-toolbar app fix>
-      <v-toolbar-title>Pantry List</v-toolbar-title>
+      <v-toolbar-title>
+          <a href="#">
+            <img src="./assets/pantry-logo.svg" alt="Pantry list" height="45px" />
+          </a>
+      </v-toolbar-title>
     </v-toolbar>
     <v-content>
       <router-view></router-view>
@@ -17,14 +21,14 @@ export default {
 </script>
 
 <style lang="scss">
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: #2c3e50;
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
 
-    .container {
-      max-width: 720px;
-    }
+  .container {
+    max-width: 720px;
   }
+}
 </style>
