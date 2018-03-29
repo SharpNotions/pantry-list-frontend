@@ -1,11 +1,13 @@
+import { apolloClient } from '@/graphql'
+import UNRANKED_ITEMS from '@/graphql/UnrankedItems.gql'
+
 export default {
-  listItems () {
-    return fetch('/api/items', {
-      credentials: 'include'
+  listItems() {
+    return apolloClient.query({
+      query: UNRANKED_ITEMS
     })
-      .then(response => response.json())
   },
-  createItem (payload) {
+  createItem(payload) {
     return fetch('/api/item', {
       method: 'POST',
       headers: {
@@ -13,7 +15,6 @@ export default {
       },
       credentials: 'include',
       body: JSON.stringify(payload)
-    })
-      .then(response => response.json())
-  } 
+    }).then(response => response.json())
+  }
 }

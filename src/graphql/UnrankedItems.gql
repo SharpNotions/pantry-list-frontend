@@ -1,0 +1,9 @@
+query items {
+  items {
+    id
+    item_name
+    item_details {
+      description
+    }
+  }
+}

@@ -30,8 +30,8 @@ const mutations = {
   setRankedItems (state, items) {
     state.rankedItems = items
   },
-  setUnrankedItems (state, items) {
-    state.unrankedItems = items
+  setUnrankedItems(state, items) {
+    state.unrankedItems = items.data.items
   },
   setLoading (state, isLoading) {
     state.loading = isLoading
