@@ -4,24 +4,26 @@ pipeline:
     commands:
       - npm install
       - npm test
+      - ./scripts/ci/build_dockerfile.sh
 
   build:
     image: plugins/docker
     repo: sharpnotionsllc/pantry-list-frontend
     dockerfile: Dockerfile.build
     tags:
-      - latest
+      - 1.0.${DRONE_BUILD_NUMBER}
     secrets: [ docker_username, docker_password ]
     when:
       branch: master
       event: push
 
   deploy_now:
-    image: sharpnotionsllc/drone-now:latest
+    image: sharpnotionsllc/drone-now
     team: sharpnotions
     type: docker
     deploy_name: pantry-list-frontend
     alias: pantry-list-frontend
+    now_token: ${NOW_TOKEN}
     secrets: [ now_token ]
     cleanup: true
     public: true
@@ -29,3 +31,32 @@ pipeline:
     when:
       branch: master
       event: push
+
+  build-push-prod:
+    image: plugins/docker
+    repo: sharpnotionsllc/pantry-list-frontend
+    tags:
+      - latest
+      - 1.0.${DRONE_BUILD_NUMBER}
+    when:
+      event: deployment
+      environment: [ production ]
+
+  ## TODO: Deploy to a production env.
+
+  notify:
+    image: plugins/slack
+    webhook: ${SLACK_WEBHOOK}
+    channel: ten-hour-projects
+    username: drone
+    icon_url: https://discourse.drone.io/uploads/drone/original/1X/3c1169460330cd8c88c9da925e7bbbd7ace83200.png
+    secrets: [ slack_webhook ]
+    when:
+      branch: master
+      status: [ success, failure]
+    template: >
+      {{#success build.status}}
+        [<{{ build.link }}|#{{ build.number }}> {{ build.event }}] {{ repo.owner }}/{{ repo.name }} ({{ build.author }}, build succeeded). :tada:
+      {{else}}
+        [<{{ build.link }}|#{{ build.number }}> {{ build.event }}] {{ repo.owner }}/{{ repo.name }} ({{ build.author }}, build Failed). :skull:
+      {{/success}}
