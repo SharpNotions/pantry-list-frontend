@@ -4,6 +4,7 @@ pipeline:
     commands:
       - npm install
       - npm test
+      - ./scripts/ci/build_dockerfile.sh
 
   build:
     image: plugins/docker
@@ -17,7 +18,7 @@ pipeline:
       event: push
 
   deploy_now:
-    image: sharpnotionsllc/drone-now:1.0.${DRONE_BUILD_NUMBER}
+    image: sharpnotionsllc/drone-now
     team: sharpnotions
     type: docker
     deploy_name: pantry-list-frontend
@@ -46,7 +47,7 @@ pipeline:
   notify:
     image: plugins/slack
     webhook: ${SLACK_WEBHOOK}
-    channel: zulu
+    channel: ten-hour-projects
     username: drone
     icon_url: https://discourse.drone.io/uploads/drone/original/1X/3c1169460330cd8c88c9da925e7bbbd7ace83200.png
     secrets: [ slack_webhook ]
