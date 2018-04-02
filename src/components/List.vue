@@ -31,11 +31,9 @@ export default {
     })
   },
   methods: {
-    ...mapActions('list', [
-      'addItem'
-    ])
+    ...mapActions('list', ['addItem'])
   },
-  mounted () {
+  mounted() {
     this.$store.dispatch('list/listItems')
   }
 }

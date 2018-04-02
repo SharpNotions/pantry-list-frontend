@@ -23,22 +23,20 @@ export default {
   props: {
     addItem: Function
   },
-  data () {
+  data() {
     return {
       newLabel: ''
     }
   },
   computed: {
-    canSubmit () {
+    canSubmit() {
       return this.newLabel.length && !this.loading
     },
     ...mapState('list', ['loading'])
   },
   methods: {
-    async submit () {
-      await this.addItem(
-        this.newLabel
-      )
+    async submit() {
+      await this.addItem(this.newLabel)
       this.newLabel = ''
     }
   }

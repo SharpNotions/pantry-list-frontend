@@ -1,6 +1,7 @@
-async function resolveEventually (data, waitMs = 500) {
+async function resolveEventually(data, waitMs = 500) {
   return new Promise((resolve, reject) =>
-    setTimeout(() => resolve(data), waitMs))
+    setTimeout(() => resolve(data), waitMs)
+  )
 }
 
 export default {
@@ -9,7 +10,7 @@ export default {
     idCount: 0,
     items: []
   },
-  addItem (item = {}) {
+  addItem(item = {}) {
     item = {
       label: '',
       votes: 0,
@@ -21,10 +22,8 @@ export default {
     localStorage.setItem('items', JSON.stringify(this.state.items))
     return resolveEventually(this.state.items)
   },
-  listItems () {
-    this.state.items = JSON.parse(
-      localStorage.getItem('items') || []
-    )
+  listItems() {
+    this.state.items = JSON.parse(localStorage.getItem('items') || [])
     this.state.idCount = this.state.items.length
     return resolveEventually(this.state.items)
   }

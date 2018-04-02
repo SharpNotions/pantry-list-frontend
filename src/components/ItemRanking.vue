@@ -96,60 +96,51 @@ export default {
   },
   computed: {
     rankedList: {
-      get () {
+      get() {
         return this.rankedItems
       },
-      set (value) {
+      set(value) {
         this.setRankedItems(value)
       }
     },
     unrankedList: {
-      get () {
+      get() {
         return this.unrankedItems
       },
-      set (value) {
+      set(value) {
         this.setUnrankedItems(value)
       }
     },
     hasError() {
       return !!this.error
     },
-    ...mapState('itemRanking', [
-      'rankedItems',
-      'unrankedItems',
-      'error'
-    ]),
-    ...mapGetters('itemRanking', [
-      'allItems'
-    ])
+    ...mapState('itemRanking', ['rankedItems', 'unrankedItems', 'error']),
+    ...mapGetters('itemRanking', ['allItems'])
   },
   methods: {
-    onItemSelect (value) {
+    onItemSelect(value) {
       // v-select @change emits a DOM Event and then the selected value on mouse click
       // we only care about the selected value
       if (value && value.item_name) {
         this.moveItemToRankedList(value)
       }
     },
-    showItemInfo (item) {
+    showItemInfo(item) {
       this.infoDialog = true
       this.infoDialogItem = item
     },
-    hideItemInfo () {
+    hideItemInfo() {
       this.infoDialog = false
     },
-    moveItemToRankedList (item) {
+    moveItemToRankedList(item) {
       this.addRankedItem(item)
       this.removeUnrankedItem(item)
     },
-    moveItemToUnrankedList (item) {
+    moveItemToUnrankedList(item) {
       this.addUnrankedItem(item)
       this.removeRankedItem(item)
     },
-    ...mapActions('itemRanking', [
-      'loadItems',
-      'createItem'
-    ]),
+    ...mapActions('itemRanking', ['loadItems', 'createItem']),
     ...mapMutations('itemRanking', [
       'setRankedItems',
       'setUnrankedItems',
@@ -159,21 +150,21 @@ export default {
       'removeUnrankedItem'
     ])
   },
-  mounted () {
+  mounted() {
     this.loadItems()
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  .container .layout .flex.ranking-numbers {
-    padding-right: 0;
-    padding-left: 0;
-    .list {
-      background: none;
-    }
+.container .layout .flex.ranking-numbers {
+  padding-right: 0;
+  padding-left: 0;
+  .list {
+    background: none;
   }
-  .snack .snack__content .btn .btn__content {
-    color: white
-  }
+}
+.snack .snack__content .btn .btn__content {
+  color: white;
+}
 </style>

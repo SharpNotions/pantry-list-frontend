@@ -39,16 +39,16 @@ export default {
   },
   computed: {
     list: {
-      get () {
+      get() {
         return this.items
       },
-      set (value) {
+      set(value) {
         this.$emit('list-change', value)
       }
     }
   },
   methods: {
-    hasItemDetails (item) {
+    hasItemDetails(item) {
       return item.item_details && item.item_details.description
     }
   }
@@ -56,16 +56,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .draggable-list {
-    min-height: 70px;
+.draggable-list {
+  min-height: 70px;
+}
+.list {
+  &.empty {
+    background: none;
   }
-  .list {
-    &.empty {
-      background: none;
-    }
-  }
-  .list-item + .list-item{
-    border-top: 1px lightgrey solid;
-  }
+}
+.list-item + .list-item {
+  border-top: 1px lightgrey solid;
+}
 </style>
-

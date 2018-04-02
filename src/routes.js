@@ -26,7 +26,7 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   if (to.meta.requiresAuth && !auth.isAuthorized()) {
-    next({path: '/login', query: { redirect: to.fullPath }})
+    next({ path: '/login', query: { redirect: to.fullPath } })
   } else {
     next()
   }

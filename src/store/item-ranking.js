@@ -8,15 +8,12 @@ const state = {
 }
 
 const getters = {
-  allItems (state) {
-    return [
-      ...state.unrankedItems,
-      ...state.rankedItems
-    ]
+  allItems(state) {
+    return [...state.unrankedItems, ...state.rankedItems]
   }
 }
 
-const findItemIndex = function (items, itemToFind) {
+const findItemIndex = function(items, itemToFind) {
   if (!items || !itemToFind) {
     return -1
   }
@@ -24,32 +21,32 @@ const findItemIndex = function (items, itemToFind) {
 }
 
 const mutations = {
-  setAllItems (state, items) {
+  setAllItems(state, items) {
     state.allItems = items
   },
-  setRankedItems (state, items) {
+  setRankedItems(state, items) {
     state.rankedItems = items
   },
   setUnrankedItems(state, items) {
     state.unrankedItems = items
   },
-  setLoading (state, isLoading) {
+  setLoading(state, isLoading) {
     state.loading = isLoading
   },
-  setError (state, message) {
+  setError(state, message) {
     state.error = message
   },
-  addRankedItem (state, itemToAdd) {
+  addRankedItem(state, itemToAdd) {
     if (findItemIndex(state.rankedItems, itemToAdd) === -1) {
       state.rankedItems.push(itemToAdd)
     }
   },
-  addUnrankedItem (state, itemToAdd) {
+  addUnrankedItem(state, itemToAdd) {
     if (findItemIndex(state.unrankedItems, itemToAdd) === -1) {
       state.unrankedItems.push(itemToAdd)
     }
   },
-  removeRankedItem (state, itemToRemove) {
+  removeRankedItem(state, itemToRemove) {
     const index = findItemIndex(state.rankedItems, itemToRemove)
     if (index > -1) {
       state.rankedItems = [
@@ -58,7 +55,7 @@ const mutations = {
       ]
     }
   },
-  removeUnrankedItem (state, itemToRemove) {
+  removeUnrankedItem(state, itemToRemove) {
     const index = findItemIndex(state.unrankedItems, itemToRemove)
     if (index > -1) {
       state.unrankedItems = [
@@ -70,7 +67,7 @@ const mutations = {
 }
 
 const actions = {
-  async loadItems ({ commit }) {
+  async loadItems({ commit }) {
     try {
       commit('setUnrankedItems', await api.listItems())
       commit('setRankedItems', [])
@@ -79,11 +76,11 @@ const actions = {
       console.error(err)
     }
   },
-  async createItem ({ commit }, payload) {
+  async createItem({ commit }, payload) {
     try {
       commit('addRankedItem', await api.createItem(payload))
     } catch (err) {
-      commit('setError', 'Oh no, it didn\'t work')
+      commit('setError', "Oh no, it didn't work")
       console.error(err)
     }
   }

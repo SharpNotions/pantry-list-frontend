@@ -8,19 +8,19 @@ const state = {
 }
 
 const mutations = {
-  loading (state, isLoading) {
+  loading(state, isLoading) {
     state.loading = isLoading
   },
-  error (state, message) {
+  error(state, message) {
     state.alert = message
   },
-  setItems (state, items) {
+  setItems(state, items) {
     state.items = items
   }
 }
 
 const actions = {
-  async listItems ({ commit }) {
+  async listItems({ commit }) {
     commit('loading', true)
     try {
       commit('setItems', await api.listItems())
@@ -30,7 +30,7 @@ const actions = {
       commit('loading', false)
     }
   },
-  async addItem ({ commit }, label) {
+  async addItem({ commit }, label) {
     commit('loading', true)
     try {
       const items = await api.addItem({ label })

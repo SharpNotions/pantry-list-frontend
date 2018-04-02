@@ -12,17 +12,17 @@ import auth from '@/auth'
 
 export default {
   name: 'login',
-  data () {
+  data() {
     return {
       error: ''
     }
   },
-  mounted () {
+  mounted() {
     if (auth.isAuthorized()) {
       this.$router.replace(this.$route.query.redirect || '/')
     }
     if (!window.gapi) {
-      throw new Error('Google API is missing.  You can\'t log in without it 😦')
+      throw new Error("Google API is missing.  You can't log in without it 😦")
     }
 
     window.gapi.signin2.render('g-signin2', {
@@ -31,7 +31,7 @@ export default {
     })
   },
   methods: {
-    onSignIn (user) {
+    onSignIn(user) {
       const hd = user.getHostedDomain()
       if (hd === 'sharpnotions.com') {
         const { id_token, expires_in } = user.getAuthResponse()
@@ -44,8 +44,8 @@ export default {
 </script>
 
 <style lang="scss">
- #g-signin2 {
-   display: flex;
-   justify-content: center;
- }
+#g-signin2 {
+  display: flex;
+  justify-content: center;
+}
 </style>

@@ -30,7 +30,7 @@
 <script>
 export default {
   name: 'item-adder-button',
-  data () {
+  data() {
     return {
       valid: false,
       form: {
@@ -39,20 +39,18 @@ export default {
       },
       addAnother: false,
       formDialog: false,
-      nameRules: [
-        value => !!value || 'Name is required'
-      ]
+      nameRules: [value => !!value || 'Name is required']
     }
   },
   watch: {
-    formDialog (value) {
+    formDialog(value) {
       if (value && this.$refs.form) {
         this.$refs.form.reset()
       }
     }
   },
   methods: {
-    submit () {      
+    submit() {
       if (this.$refs.form.validate()) {
         const payload = {
           item_name: this.form.name,
@@ -61,7 +59,7 @@ export default {
           }
         }
         this.$emit('add-item', payload)
-        
+
         if (!this.addAnother) {
           this.formDialog = false
         } else {
@@ -73,5 +71,5 @@ export default {
       }
     }
   }
- }
+}
 </script>
