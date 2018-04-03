@@ -8,7 +8,8 @@ export default {
   state: {
     loading: false,
     idCount: 0,
-    items: []
+    items: [],
+    rankedItems: []
   },
   createItem(item = {}) {
     item = {
@@ -23,8 +24,27 @@ export default {
     return resolveEventually(this.state.items)
   },
   listItems() {
-    this.state.items = JSON.parse(localStorage.getItem('items') || [])
+    this.state.items = JSON.parse(localStorage.getItem('items') || '[]')
+    this.state.rankedItems = JSON.parse(
+      localStorage.getItem('rankedItems') || '[]'
+    )
     this.state.idCount = this.state.items.length
-    return resolveEventually(this.state.items)
+    return resolveEventually(
+      // Only return items that aren't in the user's ranked list.
+      this.state.items.filter(
+        item => !this.state.rankedItems.some(ranked => item.id === ranked.id)
+      )
+    )
+  },
+  listRankedItems() {
+    this.state.rankedItems = JSON.parse(
+      localStorage.getItem('rankedItems') || '[]'
+    )
+    return resolveEventually(this.state.rankedItems)
+  },
+  saveRankedItems(rankedItems) {
+    this.state.rankedItems = rankedItems
+    localStorage.setItem('rankedItems', JSON.stringify(this.state.rankedItems))
+    return resolveEventually(rankedItems)
   }
 }
