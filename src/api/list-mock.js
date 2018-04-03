@@ -10,7 +10,7 @@ export default {
     idCount: 0,
     items: []
   },
-  addItem(item = {}) {
+  createItem(item = {}) {
     item = {
       label: '',
       votes: 0,
