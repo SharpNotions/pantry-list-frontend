@@ -132,15 +132,12 @@ export default {
     hideItemInfo() {
       this.infoDialog = false
     },
-    moveItemToRankedList(item) {
-      this.addRankedItem(item)
-      this.removeUnrankedItem(item)
-    },
-    moveItemToUnrankedList(item) {
-      this.addUnrankedItem(item)
-      this.removeRankedItem(item)
-    },
-    ...mapActions('itemRanking', ['loadItems', 'createItem']),
+    ...mapActions('itemRanking', [
+      'loadItems',
+      'createItem',
+      'moveItemToRankedList',
+      'moveItemToUnrankedList'
+    ]),
     ...mapMutations('itemRanking', [
       'setRankedItems',
       'setUnrankedItems',

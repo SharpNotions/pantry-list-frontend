@@ -1,6 +1,7 @@
 import api from '@/api/list'
 
 const state = {
+  maxRankedItems: 10,
   rankedItems: [],
   unrankedItems: [],
   loading: false,
@@ -82,6 +83,32 @@ const actions = {
     } catch (err) {
       commit('setError', "Oh no, it didn't work")
       console.error(err)
+    }
+  },
+  moveItemToRankedList({ commit, state }, item) {
+    try {
+      if (state.rankedItems.length >= state.maxRankedItems) {
+        commit(
+          'addUnrankedItem',
+          state.rankedItems[state.rankedItems.length - 1]
+        )
+        commit(
+          'removeRankedItem',
+          state.rankedItems[state.rankedItems.length - 1]
+        )
+      }
+      commit('addRankedItem', item)
+      commit('removeUnrankedItem', item)
+    } catch (err) {
+      commit('setError', err.message)
+    }
+  },
+  moveItemToUnrankedList({ commit }, item) {
+    try {
+      commit('addUnrankedItem', item)
+      commit('removeRankedItem', item)
+    } catch (err) {
+      commit('setError', err.message)
     }
   }
 }
