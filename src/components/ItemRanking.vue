@@ -136,10 +136,10 @@ export default {
       'loadItems',
       'createItem',
       'moveItemToRankedList',
-      'moveItemToUnrankedList'
+      'moveItemToUnrankedList',
+      'setRankedItems'
     ]),
     ...mapMutations('itemRanking', [
-      'setRankedItems',
       'setUnrankedItems',
       'addRankedItem',
       'removeRankedItem',

@@ -110,6 +110,16 @@ const actions = {
     } catch (err) {
       commit('setError', err.message)
     }
+  },
+  setRankedItems({ commit, state }, rankedItems = []) {
+    // Move excess ranked items back over to unranked list.
+    if (rankedItems.length > state.maxRankedItems) {
+      rankedItems
+        .slice(state.maxRankedItems - 1, rankedItems.length)
+        .forEach(item => commit('addUnrankedItem', item))
+      rankedItems = rankedItems.slice(0, state.maxRankedItems)
+    }
+    commit('setRankedItems', rankedItems)
   }
 }
 
