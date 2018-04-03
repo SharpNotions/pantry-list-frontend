@@ -90,7 +90,6 @@ export default {
       },
       infoDialog: false,
       infoDialogItem: {},
-      selectedItem: null,
       selectedItem: null
     }
   },
