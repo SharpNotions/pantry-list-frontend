@@ -115,7 +115,7 @@ const actions = {
     // Move excess ranked items back over to unranked list.
     if (rankedItems.length > state.maxRankedItems) {
       rankedItems
-        .slice(state.maxRankedItems - 1, rankedItems.length)
+        .slice(state.maxRankedItems, rankedItems.length)
         .forEach(item => commit('addUnrankedItem', item))
       rankedItems = rankedItems.slice(0, state.maxRankedItems)
     }
