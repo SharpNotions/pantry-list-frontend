@@ -1,5 +1,5 @@
 import { createLocalVue, mount } from '@vue/test-utils'
-import App from 'src/App'
+import App from '@/App'
 import VueRouter from 'vue-router'
 import Vuetify from 'vuetify'
 
