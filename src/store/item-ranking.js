@@ -1,6 +1,6 @@
 import api from '@/api/list'
 
-const state = {
+export const defaultState = {
   maxRankedItems: 10,
   rankedItems: [],
   unrankedItems: [],
@@ -8,20 +8,20 @@ const state = {
   error: ''
 }
 
-const getters = {
+export const getters = {
   allItems(state) {
     return [...state.unrankedItems, ...state.rankedItems]
   }
 }
 
-const findItemIndex = function(items, itemToFind) {
+export const findItemIndex = function(items, itemToFind) {
   if (!items || !itemToFind) {
     return -1
   }
   return items.findIndex(item => item.item_name === itemToFind.item_name)
 }
 
-const mutations = {
+export const mutations = {
   setAllItems(state, items) {
     state.allItems = items
   },
@@ -67,7 +67,7 @@ const mutations = {
   }
 }
 
-const actions = {
+export const actions = {
   async loadItems({ commit }) {
     try {
       commit('setUnrankedItems', await api.listItems())
@@ -125,7 +125,7 @@ const actions = {
 
 export default {
   namespaced: true,
-  state,
+  state: defaultState,
   getters,
   actions,
   mutations
