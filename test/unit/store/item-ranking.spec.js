@@ -57,14 +57,14 @@ describe('item-ranking', () => {
     expect(commitMock.mock.calls[1][1]).toMatchObject(itemToRemove)
   })
 
-  describe('setRankedItems', () => {
+  describe('setAndLimitRankedItems', () => {
     const commitMock = jest.fn()
     const state = {
       ...getFreshState(),
       maxRankedItems: 2
     }
 
-    actions.setRankedItems(
+    actions.setAndLimitRankedItems(
       {
         commit: commitMock,
         state

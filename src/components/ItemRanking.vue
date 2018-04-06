@@ -35,7 +35,7 @@
             <draggable-item-list
               :items="rankedList"
               :options="{ group: 'ranking' }"
-              @list-change="setRankedItems"
+              @list-change="setAndLimitRankedItems"
               @info-click="showItemInfo"
               @item-click="moveItemToUnrankedList">
             </draggable-item-list>
@@ -99,7 +99,7 @@ export default {
         return this.rankedItems
       },
       set(value) {
-        this.setRankedItems(value)
+        this.setAndLimitRankedItems(value)
       }
     },
     unrankedList: {
@@ -136,7 +136,7 @@ export default {
       'createItem',
       'moveItemToRankedList',
       'moveItemToUnrankedList',
-      'setRankedItems'
+      'setAndLimitRankedItems'
     ]),
     ...mapMutations('itemRanking', [
       'setUnrankedItems',

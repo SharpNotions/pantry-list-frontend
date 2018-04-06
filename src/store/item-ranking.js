@@ -111,7 +111,7 @@ export const actions = {
       commit('setError', err.message)
     }
   },
-  setRankedItems({ commit, state }, rankedItems = []) {
+  setAndLimitRankedItems({ commit, state }, rankedItems = []) {
     // Move excess ranked items back over to unranked list.
     if (rankedItems.length > state.maxRankedItems) {
       rankedItems
