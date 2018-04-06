@@ -44,7 +44,8 @@
       "\\.(gql|graphql)$": "jest-transform-graphql",
       ".*\\.(vue)$": "vue-jest",
       ".*": "babel-jest"
-    }
+    },
+    "setupFiles": ["<rootDir>/test/setup-jest"]
   },
   "devDependencies": {
     "@vue/test-utils": "^1.0.0-beta.12",
