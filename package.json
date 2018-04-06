@@ -41,6 +41,7 @@
     },
     "moduleFileExtensions": ["js", "json", "vue"],
     "transform": {
+      "\\.(gql|graphql)$": "jest-transform-graphql",
       ".*\\.(vue)$": "vue-jest",
       ".*": "babel-jest"
     }
@@ -67,6 +68,7 @@
     "file-loader": "^1.1.4",
     "husky": "^0.15.0-rc.13",
     "jest": "^22.4.3",
+    "jest-transform-graphql": "^2.1.0",
     "node-sass": "^4.5.3",
     "prettier": "1.11.1",
     "pretty-quick": "^1.4.1",
