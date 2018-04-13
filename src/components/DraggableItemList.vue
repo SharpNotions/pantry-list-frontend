@@ -12,6 +12,7 @@
     >
       <v-list-tile
         v-for="item in list" :key="item.item_name"
+        :data-item-id="item.id"
         @click="$emit('item-click', item)"
         class="list-item">
         <v-list-tile-content>

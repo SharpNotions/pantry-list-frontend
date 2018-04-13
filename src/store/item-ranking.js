@@ -140,13 +140,6 @@ export const actions = {
     }
     commit('setRankedItems', rankedItems)
   },
-  async saveItemRankByIndex({ commit, dispatch, state }, targetIndex) {
-    try {
-      await dispatch('saveItemRank', state.rankedItems[targetIndex].id)
-    } catch (err) {
-      commit('setError', err.message)
-    }
-  },
   async saveItemRank({ commit, state }, targetId) {
     try {
       await api.postItemRank(
@@ -157,9 +150,9 @@ export const actions = {
       commit('setError', err.message)
     }
   },
-  async deleteItemRank({ commit, state }, ids) {
+  async deleteItemRank({ commit, state }, targetId) {
     try {
-      await api.deleteItemRank(ids.target)
+      await api.deleteItemRank(targetId)
     } catch (err) {
       commit('setError', err.message)
     }
