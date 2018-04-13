@@ -4,6 +4,12 @@ async function resolveEventually(data, waitMs = 500) {
   )
 }
 
+const loadRankedItemIds = () =>
+  JSON.parse(localStorage.getItem('rankedItemIds') || '[]')
+
+const saveRankedItemIds = rankedItemIds =>
+  localStorage.setItem('rankedItemIds', JSON.stringify(rankedItemIds))
+
 export default {
   state: {
     loading: false,
@@ -25,9 +31,7 @@ export default {
   },
   listItems() {
     this.state.items = JSON.parse(localStorage.getItem('items') || '[]')
-    this.state.rankedItemIds = JSON.parse(
-      localStorage.getItem('rankedItemIds') || '[]'
-    )
+    this.state.rankedItemIds = loadRankedItemIds()
     this.state.idCount = this.state.items.length
     return resolveEventually(
       // Only return items that aren't in the user's ranked list.
@@ -37,31 +41,37 @@ export default {
     )
   },
   listRankedItems() {
-    this.state.rankedItemIds = JSON.parse(
-      localStorage.getItem('rankedItemIds') || '[]'
-    )
-    return resolveEventually(this.state.rankedItemIds)
+    this.state.rankedItemIds = loadRankedItemIds()
+    const actualItems = this.state.rankedItemIds.reduce((acc, id) => {
+      const item = this.state.items.find(i => i.id === id)
+      if (item) acc.push(item)
+      return acc
+    }, [])
+    return resolveEventually(actualItems)
   },
-  postItemRank(previousItemId, itemId) {
-    if (!previousItemId) {
-      this.state.rankedItemIds.push(itemId)
-    } else {
-      const previousItemIndex = this.state.rankedItemIds.indexOf(previousItemId)
-      const itemIndex = this.state.rankedItemIds.indexOf(itemId)
-      // Use bitwise operators to convert -1 to 0 if item not in array.
-      if (~previousItemIndex && !~itemIndex) {
-        this.state.rankedItemsIds.splice(previousItemIndex, 0, itemIndex)
-        // TODO: Limit to `n` items in ranked array.
-      } else {
-        return Promise.reject(new Error('Previous item or item ID not found'))
-      }
+  async postItemRank(previousItemId, itemId) {
+    await this.listRankedItems()
+
+    const itemIndex = this.state.rankedItemIds.indexOf(itemId)
+    if (itemIndex !== -1) {
+      this.state.rankedItemIds.splice(itemIndex, 1)
     }
+
+    const previousItemIndex = this.state.rankedItemIds.indexOf(previousItemId)
+    if (previousItemIndex !== -1) {
+      this.state.rankedItemIds.splice(previousItemIndex + 1, 0, itemId)
+    } else {
+      this.state.rankedItemIds.unshift(itemId)
+    }
+
+    saveRankedItemIds(this.state.rankedItemIds)
   },
   deleteItemRank(itemId) {
+    this.state.rankedItemIds = loadRankedItemIds()
     const itemIndex = this.state.rankedItemIds.indexOf(itemId)
-    // Use bitwise operators to convert -1 to 0 if item not in array.
-    if (!~itemIndex) {
-      this.state.rankedItemsIds.splice(itemIndex, 1)
+    if (itemIndex !== -1) {
+      this.state.rankedItemIds.splice(itemIndex, 1)
+      saveRankedItemIds(this.state.rankedItemIds)
     } else {
       return Promise.reject(new Error('Previous item or item ID not found'))
     }
