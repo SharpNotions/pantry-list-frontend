@@ -1,6 +1,15 @@
 <template>
   <v-list two-line :class="{ empty: list.length === 0 }">
-    <draggable v-model="list" :options="options" class="draggable-list">
+    <draggable
+      v-model="list"
+      :options="options"
+      @end="bubbleEvent"
+      @add="bubbleEvent"
+      @update="bubbleEvent"
+      @sort="bubbleEvent"
+      @remove="bubbleEvent"
+      class="draggable-list"
+    >
       <v-list-tile
         v-for="item in list" :key="item.item_name"
         @click="$emit('item-click', item)"
@@ -50,6 +59,9 @@ export default {
   methods: {
     hasItemDetails(item) {
       return item.item_details && item.item_details.description
+    },
+    bubbleEvent(event) {
+      this.$emit(event.type, event)
     }
   }
 }
