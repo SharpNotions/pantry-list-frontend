@@ -84,9 +84,11 @@ export const actions = {
       console.error(err)
     }
   },
-  async createItem({ commit }, payload) {
+  async createItem({ commit, dispatch }, payload) {
     try {
-      commit('addRankedItem', await api.createItem(payload))
+      const newItem = await api.createItem(payload)
+      commit('addRankedItem', newItem)
+      await dispatch('saveItemRank', newItem.id)
     } catch (err) {
       commit('setError', "Oh no, it didn't work")
       console.error(err)
