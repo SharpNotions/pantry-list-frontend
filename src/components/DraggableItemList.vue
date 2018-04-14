@@ -40,11 +40,11 @@ export default {
   props: {
     items: {
       type: Array,
-      default: []
+      default: () => []
     },
     options: {
       type: Object,
-      default: {}
+      default: () => ({})
     }
   },
   computed: {
