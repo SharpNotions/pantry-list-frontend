@@ -27,7 +27,7 @@ export default {
     item.id = this.state.idCount++
     this.state.items.push(item)
     localStorage.setItem('items', JSON.stringify(this.state.items))
-    return resolveEventually(this.state.items)
+    return resolveEventually(item)
   },
   listItems() {
     this.state.items = JSON.parse(localStorage.getItem('items') || '[]')
