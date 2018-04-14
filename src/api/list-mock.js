@@ -29,7 +29,7 @@ export default {
     localStorage.setItem('items', JSON.stringify(this.state.items))
     return resolveEventually(item)
   },
-  listItems() {
+  async listItems() {
     this.state.items = JSON.parse(localStorage.getItem('items') || '[]')
     this.state.rankedItemIds = loadRankedItemIds()
     this.state.idCount = this.state.items.length
@@ -40,7 +40,7 @@ export default {
       )
     )
   },
-  listRankedItems() {
+  async listRankedItems() {
     this.state.rankedItemIds = loadRankedItemIds()
     const actualItems = this.state.rankedItemIds.reduce((acc, id) => {
       const item = this.state.items.find(i => i.id === id)
@@ -66,7 +66,7 @@ export default {
 
     saveRankedItemIds(this.state.rankedItemIds)
   },
-  deleteItemRank(itemId) {
+  async deleteItemRank(itemId) {
     this.state.rankedItemIds = loadRankedItemIds()
     const itemIndex = this.state.rankedItemIds.indexOf(itemId)
     if (itemIndex !== -1) {
