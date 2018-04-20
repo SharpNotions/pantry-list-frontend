@@ -6,6 +6,11 @@
             <img src="./assets/pantry-logo.svg" alt="Pantry list" height="45px" />
           </a>
       </v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-toolbar-items>
+        <v-btn flat to="total-rankings">Total Rankings</v-btn>
+        <v-btn flat to="/">My Rankings</v-btn>
+      </v-toolbar-items>
     </v-toolbar>
     <v-content>
       <router-view></router-view>

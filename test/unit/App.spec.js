@@ -11,7 +11,7 @@ describe('App', () => {
     localVue = createLocalVue()
     localVue.use(Vuetify)
     localVue.use(VueRouter)
-    wrapper = mount(App, { localVue, stubs: ['router-view'] })
+    wrapper = mount(App, { localVue, stubs: ['router-view', 'v-btn'] })
   })
 
   it('should render', () => {
