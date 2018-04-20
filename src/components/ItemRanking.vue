@@ -37,7 +37,11 @@
               :options="{ group: 'ranking' }"
               @list-change="setAndLimitRankedItems"
               @info-click="showItemInfo"
-              @item-click="moveItemToUnrankedList">
+              @item-click="moveItemToUnrankedList"
+              @add="onRankedItemAdded"
+              @remove="onRankedItemRemoved"
+              @update="onRankedItemReorder"
+            >
             </draggable-item-list>
           </v-flex>
           <v-flex xs6>
@@ -117,6 +121,21 @@ export default {
     ...mapGetters('itemRanking', ['allItems'])
   },
   methods: {
+    onRankedItemReorder(event) {
+      this.saveItemRank(this.getItemId(event.item))
+    },
+    onRankedItemAdded(event) {
+      this.saveItemRank(this.getItemId(event.item))
+    },
+    onRankedItemRemoved(event) {
+      this.deleteItemRank(this.getItemId(event.item))
+    },
+    getItemId(listItemElement) {
+      return parseInt(
+        listItemElement.firstChild.attributes['data-item-id'].nodeValue,
+        10
+      )
+    },
     onItemSelect(value) {
       // v-select @change emits a DOM Event and then the selected value on mouse click
       // we only care about the selected value
@@ -136,7 +155,9 @@ export default {
       'createItem',
       'moveItemToRankedList',
       'moveItemToUnrankedList',
-      'setAndLimitRankedItems'
+      'setAndLimitRankedItems',
+      'saveItemRank',
+      'deleteItemRank'
     ]),
     ...mapMutations('itemRanking', [
       'setUnrankedItems',

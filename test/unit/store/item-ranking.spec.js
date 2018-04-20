@@ -2,9 +2,11 @@ import { actions, defaultState } from '@/store/item-ranking'
 
 const getFreshState = () => JSON.parse(JSON.stringify(defaultState))
 
+const resolveWith = payload => Promise.resolve()
+
 describe('item-ranking', () => {
   describe('moveItemToRankedList', () => {
-    it('should not allow ranked list to exceed max', () => {
+    it('should not allow ranked list to exceed max', async () => {
       const commitMock = jest.fn()
       const state = {
         ...getFreshState(),
@@ -13,9 +15,10 @@ describe('item-ranking', () => {
         unrankedItems: [{ id: 3 }, { id: 4 }]
       }
 
-      actions.moveItemToRankedList(
+      await actions.moveItemToRankedList(
         {
           commit: commitMock,
+          dispatch: resolveWith,
           state
         },
         { id: 5 }
@@ -33,7 +36,7 @@ describe('item-ranking', () => {
     })
   })
 
-  describe('moveItemToUnrankedList', () => {
+  describe('moveItemToUnrankedList', async () => {
     const commitMock = jest.fn()
     const state = {
       ...getFreshState(),
@@ -42,9 +45,10 @@ describe('item-ranking', () => {
     }
     const itemToRemove = state.rankedItems[0]
 
-    actions.moveItemToUnrankedList(
+    await actions.moveItemToUnrankedList(
       {
         commit: commitMock,
+        dispatch: resolveWith,
         state
       },
       itemToRemove
@@ -67,6 +71,7 @@ describe('item-ranking', () => {
     actions.setAndLimitRankedItems(
       {
         commit: commitMock,
+        dispatch: resolveWith,
         state
       },
       [{ id: 0 }, { id: 1 }, { id: 2 }, { id: 3 }]
