@@ -98,16 +98,12 @@ export const actions = {
     try {
       if (state.rankedItems.length >= state.maxRankedItems) {
         const itemToMove = getLastItem(state.rankedItems)
-        const preceedingItemId = getPreceedingItemId(
-          state.rankedItems,
-          itemToMove
-        )
         commit('addUnrankedItem', itemToMove)
         commit('removeRankedItem', itemToMove)
 
         // Save changes to server.
         // TODO: Recover if save fails.
-        await dispatch('deleteItemRank', preceedingItemId, itemToMove.id)
+        await dispatch('deleteItemRank', itemToMove.id)
       }
       commit('addRankedItem', item)
       commit('removeUnrankedItem', item)
@@ -124,10 +120,7 @@ export const actions = {
       commit('addUnrankedItem', item)
       commit('removeRankedItem', item)
 
-      await dispatch('deleteItemRank', {
-        preceeding: getPreceedingItemId(state.rankedItems, item),
-        target: item.id
-      })
+      await dispatch('deleteItemRank', item.id)
     } catch (err) {
       commit('setError', err.message)
     }
