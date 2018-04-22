@@ -18,5 +18,14 @@ export default {
       credentials: 'include',
       body: JSON.stringify(payload)
     }).then(response => response.json())
+  },
+  listRankedItems() {
+    return Promise.resolve([])
+  },
+  postItemRank() {
+    return Promise.resolve()
+  },
+  deleteItemRank() {
+    return Promise.resolve()
   }
 }
