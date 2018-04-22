@@ -114,8 +114,11 @@ export default {
         this.setUnrankedItems(value)
       }
     },
-    hasError() {
-      return !!this.error
+    hasError: {
+      get() {
+        return !!this.error
+      },
+      set() {}
     },
     ...mapState('itemRanking', ['rankedItems', 'unrankedItems', 'error']),
     ...mapGetters('itemRanking', ['allItems'])
