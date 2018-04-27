@@ -1,9 +1,10 @@
 <template>
   <v-container>
+    <v-snackbar v-model="hasError" color="red" top multi-line>{{ error }}</v-snackbar>
     <v-subheader class="headline">Total Rankings</v-subheader>
     <v-list three-line>
-      <v-list-tile v-for="item in items" :key="item.rank" class="ranking-item">
-        <v-list-tile-avatar class="title">{{ item.rank }}</v-list-tile-avatar>
+      <v-list-tile v-for="(item, index) in items" :key="item.id" class="ranking-item">
+        <v-list-tile-avatar class="title">{{ index + 1 }}</v-list-tile-avatar>
         <v-list-tile-content>
           <v-list-tile-title v-text="item.item_name"></v-list-tile-title>
           <v-list-tile-sub-title>{{ getDescription(item) || '&nbsp;' }}</v-list-tile-sub-title>
@@ -23,7 +24,13 @@ export default {
       'items',
       'error',
       'loading'
-    ])
+    ]),
+    hasError: {
+      get() {
+        return !!this.error
+      },
+      set() {}
+    }
   },
   methods: {
     getDescription(item) {

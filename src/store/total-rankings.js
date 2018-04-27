@@ -1,4 +1,4 @@
-import api from '@/api/total-rankings-mock'
+import api from '@/api/top-rankings'
 
 const state = {
   items: [],
@@ -21,8 +21,9 @@ const mutations = {
 const actions = {
   async loadItems({ commit }) {
     try {
+      const items = await api.listTopRankings()
       commit('setLoading', true)
-      commit('setItems', await api.listItems())
+      commit('setItems', items.singleTransVoteRankings)
       commit('setLoading', false)
     } catch (err) {
       commit('setLoading', false)
