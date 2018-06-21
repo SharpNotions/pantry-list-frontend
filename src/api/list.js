@@ -20,10 +20,26 @@ export default {
     }).then(response => response.json())
   },
   listRankedItems() {
-    return Promise.resolve([])
+    return fetch('/api/user_ranking', {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json'
+      },
+      credentials: 'include'
+    }).then(response => response.json())
   },
-  postItemRank() {
-    return Promise.resolve()
+  postItemRank(previousItemId, targetItemId) {
+    return fetch('/api/user_ranking', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      credentials: 'include',
+      body: JSON.stringify({
+        prev_item_id: previousItemId,
+        item_id: targetItemId
+      })
+    }).then(response => response.json())
   },
   deleteItemRank() {
     return Promise.resolve()
