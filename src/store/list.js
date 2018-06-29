@@ -23,7 +23,7 @@ const actions = {
   async listItems({ commit }) {
     commit('loading', true)
     try {
-      commit('setItems', await api.listItems())
+      commit('setItems', await api.listUnrankedItems())
       commit('loading', false)
     } catch (error) {
       commit('error', error.message)

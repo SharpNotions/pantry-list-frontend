@@ -19,6 +19,15 @@ export default {
       body: JSON.stringify(payload)
     }).then(response => response.json())
   },
+  listUnrankedItems() {
+    return fetch('/api/unranked_items', {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json'
+      },
+      credentials: 'include'
+    }).then(response => response.json())
+  },
   listRankedItems() {
     return fetch('/api/user_ranking', {
       method: 'GET',

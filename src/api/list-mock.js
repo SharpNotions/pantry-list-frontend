@@ -29,7 +29,7 @@ export default {
     localStorage.setItem('items', JSON.stringify(this.state.items))
     return resolveEventually(item)
   },
-  async listItems() {
+  async listUnrankedItems() {
     this.state.items = JSON.parse(localStorage.getItem('items') || '[]')
     this.state.rankedItemIds = loadRankedItemIds()
     this.state.idCount = this.state.items.length
