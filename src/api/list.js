@@ -50,7 +50,16 @@ export default {
       })
     }).then(response => response.json())
   },
-  deleteItemRank() {
-    return Promise.resolve()
+  deleteItemRank(targetItemId) {
+    return fetch('/api/user_ranking', {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json'
+      },
+      credentials: 'include',
+      body: JSON.stringify({
+        item_id: targetItemId
+      })
+    })
   }
 }
