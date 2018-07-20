@@ -1,7 +1,11 @@
 <template>
   <v-container>
     <v-layout align-center column>
-      <p>Halt!  Who goes there!?!?</p>
+      <p align="center">
+        Halt!  Who goes there!?!?
+        <br />
+        <span class="caption">(To login, use a valid Sharp Notions email address.)</span>
+      </p>
       <div id="g-signin2"> </div>
     </v-layout>
   </v-container>
