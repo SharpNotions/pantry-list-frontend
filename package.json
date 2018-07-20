@@ -13,8 +13,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit":
-        "./node_modules/.bin/pretty-quick --staged 'src/**/*.@(js|vue)'"
+      "pre-commit": "./node_modules/.bin/pretty-quick --staged 'src/**/*.@(js|vue)'"
     }
   },
   "dependencies": {
@@ -35,19 +34,31 @@
     "vuetify": "^1.1.4",
     "vuex": "^3.0.1"
   },
-  "browserslist": ["> 1%", "last 2 versions", "not ie <= 8"],
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
   "jest": {
-    "moduleDirectories": ["node_modules"],
+    "moduleDirectories": [
+      "node_modules"
+    ],
     "moduleNameMapper": {
       "^@/(.*)": "<rootDir>/src/$1"
     },
-    "moduleFileExtensions": ["js", "json", "vue"],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "vue"
+    ],
     "transform": {
       "\\.(gql|graphql)$": "jest-transform-graphql",
       ".*\\.(vue)$": "vue-jest",
       ".*": "babel-jest"
     },
-    "setupFiles": ["<rootDir>/test/setup-jest"]
+    "setupFiles": [
+      "<rootDir>/test/setup-jest"
+    ]
   },
   "devDependencies": {
     "@vue/test-utils": "^1.0.0-beta.12",
@@ -73,17 +84,16 @@
     "husky": "^0.15.0-rc.13",
     "jest": "^22.4.3",
     "jest-transform-graphql": "^2.1.0",
-    "node-sass": "^4.9.2",
+    "node-sass": "^4.5.3",
     "prettier": "1.11.1",
     "pretty-quick": "^1.4.1",
     "sass-loader": "^6.0.6",
     "vue-jest": "^2.1.1",
-    "vue-loader": "^15.2.4",
+    "vue-loader": "^13.0.5",
     "vue-server-renderer": "^2.5.16",
     "vue-template-compiler": "^2.4.4",
-    "webpack": "^4.16.1",
-    "webpack-cli": "^3.0.8",
-    "webpack-dev-server": "^3.1.4"
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.9.1"
   },
   "engine-strict": true,
   "engines": {
