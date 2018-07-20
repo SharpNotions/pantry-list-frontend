@@ -5,15 +5,23 @@
       <v-flex>
         <v-layout justify-center align-center>
           <v-flex xs9>
-            <v-select
+            <v-autocomplete
               :items="allItems"
+              label="Search"
               item-text="item_name"
-              placeholder="Search"
               no-data-text="No items found"
-              autocomplete
-              clearable
+              return-object=true
+              clearable=true
               @change="onItemSelect"
-            ></v-select>
+              >
+              <template slot="item" slot-scope="data">
+                <v-list-tile-content>
+                   <v-list-tile-title v-html="data.item.item_name"></v-list-tile-title>
+                   <v-list-tile-sub-title v-html="data.item.item_details.description"></v-list-tile-sub-title>
+                </v-list-tile-content>
+              </template>
+            </v-autocomplete>
+
           </v-flex>
           <v-flex xs1>
             <item-adder-button @add-item="createItem"></item-adder-button>
