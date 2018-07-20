@@ -1,5 +1,5 @@
 <template>
-  <v-list two-line :class="{ empty: list.length === 0 }">
+  <v-list three-line :class="{ empty: list.length === 0 }">
     <draggable
       v-model="list"
       :options="options"
@@ -19,11 +19,7 @@
           <v-list-tile-title v-text="item.item_name"></v-list-tile-title>
           <v-list-tile-sub-title v-if="item.item_details" v-text="item.item_details.description"></v-list-tile-sub-title>
         </v-list-tile-content>
-        <v-list-tile-action>
-          <v-btn v-if="hasItemDetails(item)" flat icon @click.stop="$emit('info-click', item)">
-            <v-icon color="grey lighten-1">info</v-icon>
-          </v-btn>
-        </v-list-tile-action>
+
       </v-list-tile>
     </draggable>
   </v-list>
