@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-toolbar app fix>
-      <v-toolbar-title>
+      <v-toolbar-title class="hidden-xs-only">
           <a href="#">
             <img src="./assets/pantry-logo.svg" alt="Pantry list" height="45px" />
           </a>

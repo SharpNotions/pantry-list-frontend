@@ -32,7 +32,7 @@
         <v-layout row justify-center>
           <v-flex class="ranking-numbers">
             <v-subheader class="title"></v-subheader>
-            <v-list two-line>
+            <v-list two-line class="hidden-xs-only">
               <v-list-tile v-for="rank in rankedList.length" :key="rank">
                 <v-list-tile-title v-text="rank" class="text-xs-right grey--text"></v-list-tile-title>
               </v-list-tile>
