@@ -53,7 +53,20 @@
             </draggable-item-list>
           </v-flex>
           <v-flex xs6>
-            <v-subheader class="title">Unranked Items</v-subheader>
+            <v-subheader class="title">Unranked Items
+               <v-tooltip top>
+                <v-icon
+                  slot="activator"
+                  color="grey"
+                  max-width="50"
+                  dark
+                >help</v-icon>
+                <span>
+                  To rank items, click or drag them from the list on the right. <br />
+                  To remove them from your ranked list, <br />
+                  click or drag them from the list on the list.</span>
+              </v-tooltip>
+            </v-subheader>
             <draggable-item-list
               :items="unrankedList"
               :options="{ group: 'ranking' }"
