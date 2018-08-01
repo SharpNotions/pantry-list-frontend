@@ -23,7 +23,7 @@ const actions = {
     try {
       const items = await api.listTopRankings()
       commit('setLoading', true)
-      commit('setItems', items.singleTransVoteRankings)
+      commit('setItems', items.fiboRankings)
       commit('setLoading', false)
     } catch (err) {
       commit('setLoading', false)
