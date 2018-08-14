@@ -11,10 +11,16 @@
       class="draggable-list"
     >
       <v-list-tile
-        v-for="item in list" :key="item.item_name"
+        avatar
+        v-for="(item, index) in list" :key="item.item_name"
         :data-item-id="item.id"
         @click="$emit('item-click', item)"
         class="list-item">
+        <v-list-tile-avatar v-if="options.showRankNumber">
+          <v-avatar size=30 color="grey">
+            <span class="white--text">{{index + 1}}</span>
+          </v-avatar>
+        </v-list-tile-avatar>
         <v-list-tile-content>
           <v-list-tile-title v-text="item.item_name"></v-list-tile-title>
           <v-list-tile-sub-title v-if="item.item_details" v-text="item.item_details.description"></v-list-tile-sub-title>
@@ -72,6 +78,12 @@ export default {
   &.empty {
     background: none;
   }
+}
+.v-list__tile__avatar {
+  margin-top: 0px;
+}
+.list-item {
+  padding: 14px 0px;
 }
 .list-item + .list-item {
   border-top: 1px lightgrey solid;
