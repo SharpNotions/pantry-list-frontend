@@ -29,6 +29,12 @@
         </v-layout>
       </v-flex>
       <v-flex>
+        <v-layout row justify-center class="loading-indicator">
+          <v-progress-linear
+            v-bind:class="{ loading: loading }"
+            :indeterminate="true"
+          ></v-progress-linear>
+        </v-layout>
         <v-layout row justify-center>
           <v-flex xs6>
             <v-subheader class="title">My Ranking</v-subheader>
@@ -133,7 +139,12 @@ export default {
       },
       set() {}
     },
-    ...mapState('itemRanking', ['rankedItems', 'unrankedItems', 'error']),
+    ...mapState('itemRanking', [
+      'rankedItems',
+      'unrankedItems',
+      'error',
+      'loading'
+    ]),
     ...mapGetters('itemRanking', ['allItems'])
   },
   methods: {
@@ -199,5 +210,15 @@ export default {
 }
 .snack .snack__content .btn .btn__content {
   color: white;
+}
+.loading-indicator {
+  visibility: hidden;
+  .v-progress-linear {
+    margin: 0;
+    padding: 0;
+    &.loading {
+      visibility: visible;
+    }
+  }
 }
 </style>
