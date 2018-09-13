@@ -10,8 +10,8 @@
               label="Search"
               item-text="item_name"
               no-data-text="No items found"
-              return-object=true
-              clearable=true
+              return-object
+              clearable
               @change="onItemSelect"
               >
               <template slot="item" slot-scope="data">
