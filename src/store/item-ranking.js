@@ -77,6 +77,7 @@ export const mutations = {
 
 export const actions = {
   async loadItems({ commit }) {
+    commit('setLoading', true)
     try {
       commit('setUnrankedItems', await api.listUnrankedItems())
       commit('setRankedItems', await api.listRankedItems())
@@ -84,6 +85,7 @@ export const actions = {
       commit('setError', 'Something broke')
       console.error(err)
     }
+    commit('setLoading', false)
   },
   async createItem({ commit, dispatch }, payload) {
     try {

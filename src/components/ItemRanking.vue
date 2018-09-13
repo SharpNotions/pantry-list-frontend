@@ -133,7 +133,12 @@ export default {
       },
       set() {}
     },
-    ...mapState('itemRanking', ['rankedItems', 'unrankedItems', 'error']),
+    ...mapState('itemRanking', [
+      'rankedItems',
+      'unrankedItems',
+      'error',
+      'loading'
+    ]),
     ...mapGetters('itemRanking', ['allItems'])
   },
   methods: {
@@ -199,5 +204,15 @@ export default {
 }
 .snack .snack__content .btn .btn__content {
   color: white;
+}
+.loading-indicator {
+  visibility: hidden;
+  .v-progress-linear {
+    margin: 0;
+    padding: 0;
+    &.loading {
+      visibility: visible;
+    }
+  }
 }
 </style>
