@@ -15,7 +15,7 @@
     </v-toolbar>
     <v-content>
       <v-progress-linear
-        :height="loading ? initial : 0"
+        :class="{ show: loading }"
         :indeterminate="true"
       ></v-progress-linear>
       <router-view></router-view>
@@ -64,11 +64,17 @@ export default {
       }
     }
   }
-  v-progress-linear {
-    position: absolute;
+  .v-progress-linear {
+    position: relative;
+    top: 5px;
     margin: 0;
-    transition-property: height;
+    transition-property: opacity;
     transition-duration: 500ms;
+    opacity: 0;
+
+    &.show {
+      opacity: 1;
+    }
   }
 }
 </style>
