@@ -29,12 +29,6 @@
         </v-layout>
       </v-flex>
       <v-flex>
-        <v-layout row justify-center class="loading-indicator">
-          <v-progress-linear
-            v-bind:class="{ loading: loading }"
-            :indeterminate="true"
-          ></v-progress-linear>
-        </v-layout>
         <v-layout row justify-center>
           <v-flex xs6>
             <v-subheader class="title">My Ranking</v-subheader>

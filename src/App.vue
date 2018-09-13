@@ -14,6 +14,10 @@
       </v-toolbar-items>
     </v-toolbar>
     <v-content>
+      <v-progress-linear
+        :height="loading ? initial : 0"
+        :indeterminate="true"
+      ></v-progress-linear>
       <router-view></router-view>
     </v-content>
     <v-footer app></v-footer>
@@ -21,8 +25,12 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
-  name: 'app'
+  name: 'app',
+  computed: {
+    ...mapGetters(['loading'])
+  }
 }
 </script>
 
@@ -56,7 +64,7 @@ export default {
       }
     }
   }
-  .v-progress-linear {
+  v-progress-linear {
     position: absolute;
     margin: 0;
     transition-property: height;

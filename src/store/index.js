@@ -17,5 +17,10 @@ export default new Vuex.Store({
     itemRanking,
     totalRankings
   },
+  getters: {
+    loading(state) {
+      return state.itemRanking.loading || state.totalRankings.loading
+    }
+  },
   plugins: [logrocketPlugin]
 })

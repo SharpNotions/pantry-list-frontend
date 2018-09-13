@@ -21,8 +21,8 @@ const mutations = {
 const actions = {
   async loadItems({ commit }) {
     try {
-      const items = await api.listTopRankings()
       commit('setLoading', true)
+      const items = await api.listTopRankings()
       commit('setItems', items.fiboRankings)
       commit('setLoading', false)
     } catch (err) {
