@@ -1,26 +1,141 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="279px" height="72px" viewBox="0 0 279 72" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>pantry-logo</title>
-    <defs>
-        <ellipse id="path-1" cx="36.5" cy="47" rx="4.5" ry="5"></ellipse>
-    </defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Pantry-logo" transform="translate(0.000000, -9.000000)">
-            <text id="pantry" font-family="CircularStd-Black, Circular Std" font-size="64" font-weight="700" letter-spacing="-0.0977777764" fill="#333333">
-                <tspan x="78.3653333" y="64">pantry</tspan>
-            </text>
-            <path d="M14.1013686,9 L57.8986314,9 C62.8019845,9 64.5800588,9.51054086 66.3726514,10.4692299 C68.165244,11.4279189 69.5720811,12.834756 70.5307701,14.6273486 C71.4894591,16.4199412 72,18.1980155 72,23.1013686 L72,66.8986314 C72,71.8019845 71.4894591,73.5800588 70.5307701,75.3726514 C69.5720811,77.165244 68.165244,78.5720811 66.3726514,79.5307701 C64.5800588,80.4894591 62.8019845,81 57.8986314,81 L14.1013686,81 C9.19801553,81 7.41994122,80.4894591 5.62734863,79.5307701 C3.83475604,78.5720811 2.42791888,77.165244 1.46922987,75.3726514 C0.510540861,73.5800588 0,71.8019845 0,66.8986314 L0,23.1013686 C0,18.1980155 0.510540861,16.4199412 1.46922987,14.6273486 C2.42791888,12.834756 3.83475604,11.4279189 5.62734863,10.4692299 C7.41994122,9.51054086 9.19801553,9 14.1013686,9 Z" id="Rectangle" fill="#7B4BDF"></path>
-            <ellipse id="Oval" fill="#FFFFFF" cx="36.5" cy="65.5" rx="14.5" ry="4.5"></ellipse>
-            <rect id="Rectangle-2" fill="#FFFFFF" x="22" y="25" width="29" height="42" rx="1.29999995"></rect>
-            <path d="M24,64 L24,33 C24,32.4477153 24.4477153,32 25,32 L48,32 C48.5522847,32 49,32.4477153 49,33 L49,64 C49,66.209139 43.4035594,68 36.5,68 C29.5964406,68 24,66.209139 24,64 Z" id="Oval" fill="#7B4BDF"></path>
-            <ellipse id="Oval-Copy" fill="#FFFFFF" cx="36.5" cy="44" rx="14.5" ry="4"></ellipse>
-            <rect id="Rectangle-3" fill="#FFFFFF" x="23" y="28" width="28" height="16" rx="1"></rect>
-            <ellipse id="Oval" fill="#FFFFFF" cx="36.5" cy="26.5" rx="14.5" ry="4.5"></ellipse>
-            <ellipse id="Oval-Copy-2" stroke="#7B4BDF" cx="36.5" cy="27.5" rx="12.5" ry="3.5"></ellipse>
-            <g id="Oval-2">
-                <use fill="#7B4BDF" fill-rule="evenodd" xlink:href="#path-1"></use>
-                <ellipse stroke="#FFFFFF" stroke-width="1" cx="36.5" cy="47" rx="5" ry="5.5"></ellipse>
-            </g>
-        </g>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="72"
+   height="72"
+   viewBox="0 0 72 72"
+   version="1.1"
+   id="svg27"
+   sodipodi:docname="pantry-logo.svg"
+   inkscape:version="0.92.2 5c3e80d, 2017-08-06">
+  <metadata
+     id="metadata31">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>pantry-logo</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1198"
+     inkscape:window-height="942"
+     id="namedview29"
+     showgrid="false"
+     inkscape:zoom="1.0322581"
+     inkscape:cx="30.03125"
+     inkscape:cy="36"
+     inkscape:window-x="1280"
+     inkscape:window-y="204"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="Pantry-logo" />
+  <title
+     id="title2">pantry-logo</title>
+  <defs
+     id="defs5">
+    <ellipse
+       id="path-1"
+       cx="36.5"
+       cy="47"
+       rx="4.5"
+       ry="5" />
+  </defs>
+  <g
+     id="Page-1"
+     style="fill:none;fill-rule:evenodd;stroke:none;stroke-width:1">
+    <g
+       id="Pantry-logo"
+       transform="translate(0,-9)">
+      <path
+         d="m 14.101369,9 h 43.797262 c 4.903354,0 6.681428,0.5105409 8.47402,1.46923 1.792593,0.958689 3.19943,2.365526 4.158119,4.158119 C 71.489459,16.419941 72,18.198015 72,23.101369 v 43.797262 c 0,4.903354 -0.510541,6.681428 -1.46923,8.47402 -0.958689,1.792593 -2.365526,3.19943 -4.158119,4.158119 C 64.580059,80.489459 62.801985,81 57.898631,81 H 14.101369 C 9.1980155,81 7.4199412,80.489459 5.6273486,79.53077 3.834756,78.572081 2.4279189,77.165244 1.4692299,75.372651 0.51054086,73.580059 0,71.801985 0,66.898631 V 23.101369 C 0,18.198015 0.51054086,16.419941 1.4692299,14.627349 2.4279189,12.834756 3.834756,11.427919 5.6273486,10.46923 7.4199412,9.5105409 9.1980155,9 14.101369,9 Z"
+         id="Rectangle"
+         inkscape:connector-curvature="0"
+         style="fill:#7b4bdf" />
+      <ellipse
+         id="Oval"
+         cx="36.5"
+         cy="65.5"
+         rx="14.5"
+         ry="4.5"
+         style="fill:#ffffff" />
+      <rect
+         id="Rectangle-2"
+         x="22"
+         y="25"
+         width="29"
+         height="42"
+         rx="1.3"
+         style="fill:#ffffff" />
+      <path
+         d="M 24,64 V 33 c 0,-0.552285 0.447715,-1 1,-1 h 23 c 0.552285,0 1,0.447715 1,1 v 31 c 0,2.209139 -5.596441,4 -12.5,4 C 29.596441,68 24,66.209139 24,64 Z"
+         id="path13"
+         inkscape:connector-curvature="0"
+         style="fill:#7b4bdf" />
+      <ellipse
+         id="Oval-Copy"
+         cx="36.5"
+         cy="44"
+         rx="14.5"
+         ry="4"
+         style="fill:#ffffff" />
+      <rect
+         id="Rectangle-3"
+         x="23"
+         y="28"
+         width="28"
+         height="16"
+         rx="1"
+         style="fill:#ffffff" />
+      <ellipse
+         id="ellipse17"
+         cx="36.5"
+         cy="26.5"
+         rx="14.5"
+         ry="4.5"
+         style="fill:#ffffff" />
+      <ellipse
+         id="Oval-Copy-2"
+         cx="36.5"
+         cy="27.5"
+         rx="12.5"
+         ry="3.5"
+         style="stroke:#7b4bdf" />
+      <g
+         id="Oval-2">
+        <use
+           xlink:href="#path-1"
+           id="use20"
+           style="fill:#7b4bdf;fill-rule:evenodd"
+           x="0"
+           y="0"
+           width="100%"
+           height="100%" />
+        <ellipse
+           cx="36.5"
+           cy="47"
+           rx="5"
+           ry="5.5"
+           id="ellipse22"
+           style="stroke:#ffffff;stroke-width:1" />
+      </g>
     </g>
+  </g>
 </svg>
