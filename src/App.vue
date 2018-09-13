@@ -3,8 +3,8 @@
     <v-toolbar app fix>
       <v-toolbar-title>
           <a href="#">
-            <img src="./assets/pantry-logo.svg" alt="Pantry list" height="45px" />
-            <span class="hidden-xs-only">Pantry</span>
+            <img src="./assets/pantry-logo.svg" alt="pantry" height="45px" />
+            <span class="hidden-xs-only">pantry</span>
           </a>
       </v-toolbar-title>
       <v-spacer></v-spacer>
@@ -39,11 +39,14 @@ export default {
   .v-toolbar {
     &__title {
       a {
+        font-family: CircularStd-Black, Circular Std, 'Avenir', Helvetica, Arial,
+          sans-serif;
+        font-weight: 900;
         text-decoration: none;
         display: flex;
         align-items: center;
         font-size: 2em;
-        color: #000;
+        color: #333;
       }
 
       img {
