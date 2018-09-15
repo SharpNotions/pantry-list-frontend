@@ -7,10 +7,17 @@ import auth from '@/auth'
 
 Vue.use(Router)
 
+export const DEFAULT_LIST = 'default'
+
 const router = new Router({
   routes: [
     {
-      path: '/',
+      path: '/login',
+      name: 'Login',
+      component: Login
+    },
+    {
+      path: '/list/:list/my-rankings',
       name: 'ItemRanking',
       component: ItemRanking,
       meta: {
@@ -18,7 +25,7 @@ const router = new Router({
       }
     },
     {
-      path: '/total-rankings',
+      path: '/list/:list/total-rankings',
       name: 'TotalRankings',
       component: TotalRankings,
       meta: {
@@ -26,9 +33,16 @@ const router = new Router({
       }
     },
     {
-      path: '/login',
-      name: 'Login',
-      component: Login
+      path: '/list/:list',
+      redirect: '/list/:list/my-rankings'
+    },
+    {
+      path: '/list',
+      redirect: `/list/${DEFAULT_LIST}/my-rankings`
+    },
+    {
+      path: '/',
+      redirect: `/list/${DEFAULT_LIST}/my-rankings`
     }
   ],
   scrollBehavior() {
