@@ -42,7 +42,9 @@ export default {
     ])
   },
   mounted() {
-    this.loadItems()
+    this.loadItems({
+      routeParams: this.$route.params
+    })
   }
 }
 </script>

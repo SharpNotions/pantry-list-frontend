@@ -19,10 +19,10 @@ const mutations = {
 }
 
 const actions = {
-  async loadItems({ commit }) {
+  async loadItems({ commit }, { routeParams }) {
     try {
       commit('setLoading', true)
-      const items = await api.listTopRankings()
+      const items = await api.listTopRankings(routeParams)
       commit('setItems', items.fiboRankings)
       commit('setLoading', false)
     } catch (err) {

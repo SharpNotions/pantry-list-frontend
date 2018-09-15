@@ -76,28 +76,34 @@ export const mutations = {
 }
 
 export const actions = {
-  async loadItems({ commit }) {
+  async loadItems({ commit }, { routeParams }) {
     commit('setLoading', true)
     try {
-      commit('setUnrankedItems', await api.listUnrankedItems())
-      commit('setRankedItems', await api.listRankedItems())
+      commit('setUnrankedItems', await api.listUnrankedItems(routeParams))
+      commit('setRankedItems', await api.listRankedItems(routeParams))
     } catch (err) {
       commit('setError', 'Something broke')
       console.error(err)
     }
     commit('setLoading', false)
   },
-  async createItem({ commit, dispatch }, payload) {
+  async createItem({ commit, dispatch }, { payload, routeParams }) {
     try {
-      const newItem = await api.createItem(payload)
+      const newItem = await api.createItem(payload, routeParams)
       commit('addRankedItem', newItem)
-      await dispatch('saveItemRank', newItem.id)
+      await dispatch('saveItemRank', {
+        targetId: newItem.id,
+        routeParams
+      })
     } catch (err) {
       commit('setError', "Oh no, it didn't work")
       console.error(err)
     }
   },
-  async moveItemToRankedList({ commit, dispatch, state }, item) {
+  async moveItemToRankedList(
+    { commit, dispatch, state },
+    { item, routeParams }
+  ) {
     try {
       if (state.rankedItems.length >= state.maxRankedItems) {
         const itemToMove = getLastItem(state.rankedItems)
@@ -106,29 +112,41 @@ export const actions = {
 
         // Save changes to server.
         // TODO: Recover if save fails.
-        await dispatch('deleteItemRank', itemToMove.id)
+        await dispatch('deleteItemRank', {
+          targetId: itemToMove.id,
+          routeParams
+        })
       }
       commit('addRankedItem', item)
       commit('removeUnrankedItem', item)
 
       // Save changes to server.
       // TODO: Recover if save fails.
-      await dispatch('saveItemRank', item.id)
+      await dispatch('saveItemRank', {
+        targetId: item.id,
+        routeParams
+      })
     } catch (err) {
       commit('setError', err.message)
     }
   },
-  async moveItemToUnrankedList({ commit, dispatch, state }, item) {
+  async moveItemToUnrankedList(
+    { commit, dispatch, state },
+    { item, routeParams }
+  ) {
     try {
       commit('addUnrankedItem', item)
       commit('removeRankedItem', item)
 
-      await dispatch('deleteItemRank', item.id)
+      await dispatch('deleteItemRank', {
+        targetId: item.id,
+        routeParams
+      })
     } catch (err) {
       commit('setError', err.message)
     }
   },
-  setAndLimitRankedItems({ commit, state }, rankedItems = []) {
+  setAndLimitRankedItems({ commit, state }, { rankedItems = [], routeParams }) {
     // Move excess ranked items back over to unranked list.
     if (rankedItems.length > state.maxRankedItems) {
       rankedItems
@@ -138,19 +156,20 @@ export const actions = {
     }
     commit('setRankedItems', rankedItems)
   },
-  async saveItemRank({ commit, state }, targetId) {
+  async saveItemRank({ commit, state }, { targetId, routeParams }) {
     try {
       await api.postItemRank(
         getPreceedingItemId(state.rankedItems, targetId),
-        targetId
+        targetId,
+        routeParams
       )
     } catch (err) {
       commit('setError', err.message)
     }
   },
-  async deleteItemRank({ commit, state }, targetId) {
+  async deleteItemRank({ commit, state }, { targetId, routeParams }) {
     try {
-      await api.deleteItemRank(targetId)
+      await api.deleteItemRank(targetId, routeParams)
     } catch (err) {
       commit('setError', err.message)
     }
