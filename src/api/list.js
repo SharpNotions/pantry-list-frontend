@@ -1,5 +1,6 @@
 import { apolloClient } from '@/graphql'
 import UNRANKED_ITEMS from '@/graphql/UnrankedItems.gql'
+import { objToQuery } from './utils'
 
 export default {
   listItems() {
@@ -9,8 +10,9 @@ export default {
       })
       .then(({ data }) => data.items)
   },
-  createItem(payload) {
-    return fetch('/api/item', {
+  createItem(payload, params) {
+    const url = `/api/item${objToQuery(params)}`
+    return fetch(url, {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
@@ -19,8 +21,9 @@ export default {
       body: JSON.stringify(payload)
     }).then(response => response.json())
   },
-  listUnrankedItems() {
-    return fetch('/api/unranked_items', {
+  listUnrankedItems(params) {
+    const url = `/api/unranked_items${objToQuery(params)}`
+    return fetch(url, {
       method: 'GET',
       headers: {
         'content-type': 'application/json'
@@ -28,8 +31,9 @@ export default {
       credentials: 'include'
     }).then(response => response.json())
   },
-  listRankedItems() {
-    return fetch('/api/user_ranking', {
+  listRankedItems(params) {
+    const url = `/api/user_ranking${objToQuery(params)}`
+    return fetch(url, {
       method: 'GET',
       headers: {
         'content-type': 'application/json'
@@ -37,8 +41,9 @@ export default {
       credentials: 'include'
     }).then(response => response.json())
   },
-  postItemRank(previousItemId, targetItemId) {
-    return fetch('/api/user_ranking', {
+  postItemRank(previousItemId, targetItemId, params) {
+    const url = `/api/user_ranking${objToQuery(params)}`
+    return fetch(url, {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
@@ -50,8 +55,9 @@ export default {
       })
     }).then(response => response.json())
   },
-  deleteItemRank(targetItemId) {
-    return fetch('/api/user_ranking', {
+  deleteItemRank(targetItemId, params) {
+    const url = `/api/user_ranking${objToQuery(params)}`
+    return fetch(url, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json'
