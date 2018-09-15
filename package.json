@@ -13,7 +13,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "./node_modules/.bin/pretty-quick --staged 'src/**/*.@(js|vue)'"
+      "pre-commit":
+        "./node_modules/.bin/pretty-quick --staged 'src/**/*.@(js|vue)'"
     }
   },
   "dependencies": {
@@ -34,31 +35,20 @@
     "vuetify": "^1.1.4",
     "vuex": "^3.0.1"
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ],
+  "browserslist": ["> 1%", "last 2 versions", "not ie <= 8"],
   "jest": {
-    "moduleDirectories": [
-      "node_modules"
-    ],
+    "testURL": "http://localhost/",
+    "moduleDirectories": ["node_modules"],
     "moduleNameMapper": {
       "^@/(.*)": "<rootDir>/src/$1"
     },
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "vue"
-    ],
+    "moduleFileExtensions": ["js", "json", "vue"],
     "transform": {
       "\\.(gql|graphql)$": "jest-transform-graphql",
       ".*\\.(vue)$": "vue-jest",
       ".*": "babel-jest"
     },
-    "setupFiles": [
-      "<rootDir>/test/setup-jest"
-    ]
+    "setupFiles": ["<rootDir>/test/setup-jest"]
   },
   "devDependencies": {
     "@vue/test-utils": "^1.0.0-beta.12",

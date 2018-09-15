@@ -20,11 +20,7 @@ import { mapState, mapActions } from 'vuex'
 export default {
   name: 'total-rankings',
   computed: {
-    ...mapState('totalRankings', [
-      'items',
-      'error',
-      'loading'
-    ]),
+    ...mapState('totalRankings', ['items', 'error', 'loading']),
     hasError: {
       get() {
         return !!this.error
@@ -34,12 +30,9 @@ export default {
   },
   methods: {
     getDescription(item) {
-      return item && item.item_details ?
-        item.item_details.description : '';
+      return item && item.item_details ? item.item_details.description : ''
     },
-    ...mapActions('totalRankings', [
-      'loadItems'
-    ])
+    ...mapActions('totalRankings', ['loadItems'])
   },
   mounted() {
     this.loadItems({
