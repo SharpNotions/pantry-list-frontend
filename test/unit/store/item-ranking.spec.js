@@ -21,7 +21,11 @@ describe('item-ranking', () => {
           dispatch: resolveWith,
           state
         },
-        { id: 5 }
+        {
+          item: {
+            id: 5
+          }
+        }
       )
 
       expect(commitMock).toHaveBeenCalledTimes(4)
@@ -36,53 +40,61 @@ describe('item-ranking', () => {
     })
   })
 
-  describe('moveItemToUnrankedList', async () => {
-    const commitMock = jest.fn()
-    const state = {
-      ...getFreshState(),
-      maxRankedItems: 2,
-      rankedItems: [{ id: 0 }, { id: 1 }]
-    }
-    const itemToRemove = state.rankedItems[0]
+  describe('moveItemToUnrankedList', () => {
+    it('should move the given item to the unranked list', async () => {
+      const commitMock = jest.fn()
+      const state = {
+        ...getFreshState(),
+        maxRankedItems: 2,
+        rankedItems: [{ id: 0 }, { id: 1 }]
+      }
+      const itemToRemove = state.rankedItems[0]
 
-    await actions.moveItemToUnrankedList(
-      {
-        commit: commitMock,
-        dispatch: resolveWith,
-        state
-      },
-      itemToRemove
-    )
+      await actions.moveItemToUnrankedList(
+        {
+          commit: commitMock,
+          dispatch: resolveWith,
+          state
+        },
+        {
+          item: itemToRemove
+        }
+      )
 
-    expect(commitMock.mock.calls).toHaveLength(2)
-    expect(commitMock.mock.calls[0][0]).toBe('addUnrankedItem')
-    expect(commitMock.mock.calls[0][1]).toMatchObject(itemToRemove)
-    expect(commitMock.mock.calls[1][0]).toBe('removeRankedItem')
-    expect(commitMock.mock.calls[1][1]).toMatchObject(itemToRemove)
-  })
+      expect(commitMock.mock.calls).toHaveLength(2)
+      expect(commitMock.mock.calls[0][0]).toBe('addUnrankedItem')
+      expect(commitMock.mock.calls[0][1]).toMatchObject(itemToRemove)
+      expect(commitMock.mock.calls[1][0]).toBe('removeRankedItem')
+      expect(commitMock.mock.calls[1][1]).toMatchObject(itemToRemove)
+    })
 
-  describe('setAndLimitRankedItems', () => {
-    const commitMock = jest.fn()
-    const state = {
-      ...getFreshState(),
-      maxRankedItems: 2
-    }
+    describe('setAndLimitRankedItems', () => {
+      it('should set ranked item list and limit its length', async () => {
+        const commitMock = jest.fn()
+        const state = {
+          ...getFreshState(),
+          maxRankedItems: 2
+        }
 
-    actions.setAndLimitRankedItems(
-      {
-        commit: commitMock,
-        dispatch: resolveWith,
-        state
-      },
-      [{ id: 0 }, { id: 1 }, { id: 2 }, { id: 3 }]
-    )
+        await actions.setAndLimitRankedItems(
+          {
+            commit: commitMock,
+            dispatch: resolveWith,
+            state
+          },
+          {
+            rankedItems: [{ id: 0 }, { id: 1 }, { id: 2 }, { id: 3 }]
+          }
+        )
 
-    expect(commitMock.mock.calls).toHaveLength(3)
-    expect(commitMock.mock.calls[0][0]).toBe('addUnrankedItem')
-    expect(commitMock.mock.calls[0][1]).toMatchObject({ id: 2 })
-    expect(commitMock.mock.calls[1][0]).toBe('addUnrankedItem')
-    expect(commitMock.mock.calls[1][1]).toMatchObject({ id: 3 })
-    expect(commitMock.mock.calls[2][0]).toBe('setRankedItems')
-    expect(commitMock.mock.calls[2][1]).toHaveLength(2)
+        expect(commitMock.mock.calls).toHaveLength(3)
+        expect(commitMock.mock.calls[0][0]).toBe('addUnrankedItem')
+        expect(commitMock.mock.calls[0][1]).toMatchObject({ id: 2 })
+        expect(commitMock.mock.calls[1][0]).toBe('addUnrankedItem')
+        expect(commitMock.mock.calls[1][1]).toMatchObject({ id: 3 })
+        expect(commitMock.mock.calls[2][0]).toBe('setRankedItems')
+        expect(commitMock.mock.calls[2][1]).toHaveLength(2)
+      })
+    })
   })
 })
