@@ -3,7 +3,13 @@
     <v-toolbar app fix>
       <v-toolbar-title>
           <a href="#">
-            <img src="./assets/pantry-logo.svg" alt="pantry" height="45px" />
+            <img
+              @transitionend="onTransitionFinish"
+              :class="{ loading: loading }"
+              src="./assets/pantry-logo.svg"
+              alt="pantry"
+              height="45px"
+            />
             <span class="hidden-xs-only">pantry</span>
           </a>
       </v-toolbar-title>
@@ -15,10 +21,10 @@
     </v-toolbar>
     <v-content>
       <v-progress-linear
-        :class="{ show: loading }"
+        :class="{ hide: true }"
         :indeterminate="true"
       ></v-progress-linear>
-      <router-view></router-view>
+        <router-view :class="{ hide: loading }"></router-view>
     </v-content>
     <v-footer app></v-footer>
   </v-app>
@@ -30,22 +36,43 @@ export default {
   name: 'app',
   computed: {
     ...mapGetters(['loading'])
+  },
+  methods: {
+    onTransitionFinish() {
+      console.log('DONE')
+    }
   }
 }
 </script>
 
 <style lang="scss">
+$transitionDuration: 200ms;
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 
+  .hide {
+    opacity: 0;
+  }
+
   .container {
     max-width: 720px;
+    transition-property: opacity;
+    transition-duration: $transitionDuration;
   }
+
   .v-toolbar {
+    &__content {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
     &__title {
+      overflow: visible;
+
       a {
         font-family: CircularStd-Black, Circular Std, 'Avenir', Helvetica, Arial,
           sans-serif;
@@ -61,6 +88,10 @@ export default {
         width: 1em;
         height: 1em;
         margin-right: 0.25em;
+        transition: transform 500ms ease-in-out;
+        &.loading {
+          transform: rotate(360deg);
+        }
       }
     }
   }
@@ -69,12 +100,7 @@ export default {
     top: 5px;
     margin: 0;
     transition-property: opacity;
-    transition-duration: 500ms;
-    opacity: 0;
-
-    &.show {
-      opacity: 1;
-    }
+    transition-duration: $transitionDuration;
   }
 }
 </style>
