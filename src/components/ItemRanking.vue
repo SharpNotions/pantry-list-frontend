@@ -4,10 +4,10 @@
     <v-layout column>
       <v-flex>
         <v-layout justify-center align-center>
-          <v-flex xs9>
+          <v-flex>
             <v-autocomplete
               :items="allItems"
-              label="Search"
+              label="What are you hungry for?"
               item-text="item_name"
               no-data-text="No items found"
               return-object
@@ -30,7 +30,7 @@
       </v-flex>
       <v-flex>
         <v-layout row justify-center>
-          <v-flex xs6>
+          <v-flex>
             <v-subheader class="title">My Ranking</v-subheader>
             <draggable-item-list
               :items="rankedList"
@@ -42,29 +42,6 @@
               @remove="onRankedItemRemoved"
               @update="onRankedItemReorder"
             >
-            </draggable-item-list>
-          </v-flex>
-          <v-flex xs6>
-            <v-subheader class="title">Unranked Items
-               <v-tooltip top>
-                <v-icon
-                  slot="activator"
-                  color="grey"
-                  max-width="50"
-                  dark
-                >help</v-icon>
-                <span>
-                  To rank items, click or drag them from the list on the right. <br />
-                  To remove them from your ranked list, <br />
-                  click or drag them from the list on the list.</span>
-              </v-tooltip>
-            </v-subheader>
-            <draggable-item-list
-              :items="unrankedList"
-              :options="{ group: 'ranking' }"
-              @list-change="setUnrankedItems"
-              @info-click="showItemInfo"
-              @item-click="onItemSelect">
             </draggable-item-list>
           </v-flex>
         </v-layout>
@@ -238,21 +215,8 @@ export default {
 .container .layout .flex.ranking-numbers {
   padding-right: 0;
   padding-left: 0;
-  .list {
-    background: none;
-  }
 }
 .snack .snack__content .btn .btn__content {
   color: white;
-}
-.loading-indicator {
-  visibility: hidden;
-  .v-progress-linear {
-    margin: 0;
-    padding: 0;
-    &.loading {
-      visibility: visible;
-    }
-  }
 }
 </style>
