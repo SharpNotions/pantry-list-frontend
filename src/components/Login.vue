@@ -14,6 +14,8 @@
 <script>
 import auth from '@/auth'
 
+const DEFAULT_URL = '/list/default'
+
 export default {
   name: 'login',
   data() {
@@ -23,7 +25,7 @@ export default {
   },
   mounted() {
     if (auth.isAuthorized()) {
-      this.$router.replace(this.$route.query.redirect || '/')
+      this.$router.replace(this.$route.query.redirect || DEFAULT_URL)
     }
     if (!window.gapi) {
       throw new Error("Google API is missing.  You can't log in without it 😦")
@@ -40,7 +42,7 @@ export default {
       if (hd === 'sharpnotions.com') {
         const { id_token, expires_in } = user.getAuthResponse()
         auth.authorize(id_token, expires_in)
-        this.$router.replace(this.$route.query.redirect || '/')
+        this.$router.replace(this.$route.query.redirect || DEFAULT_URL)
       }
     }
   }

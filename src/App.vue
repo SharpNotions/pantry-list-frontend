@@ -10,7 +10,7 @@
       <v-spacer></v-spacer>
       <v-toolbar-items>
         <v-btn flat to="total-rankings">Total Rankings</v-btn>
-        <v-btn flat to="/">My Rankings</v-btn>
+        <v-btn flat to="my-rankings">My Rankings</v-btn>
       </v-toolbar-items>
     </v-toolbar>
     <v-content>

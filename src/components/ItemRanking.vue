@@ -24,7 +24,7 @@
 
           </v-flex>
           <v-flex xs1>
-            <item-adder-button @add-item="createItem"></item-adder-button>
+            <item-adder-button @add-item="onCreateItem"></item-adder-button>
           </v-flex>
         </v-layout>
       </v-flex>
@@ -35,9 +35,9 @@
             <draggable-item-list
               :items="rankedList"
               :options="{ group: 'ranking', showRankNumber: true }"
-              @list-change="setAndLimitRankedItems"
+              @list-change="onRankedItemsChanged"
               @info-click="showItemInfo"
-              @item-click="moveItemToUnrankedList"
+              @item-click="onRankedItemClicked"
               @add="onRankedItemAdded"
               @remove="onRankedItemRemoved"
               @update="onRankedItemReorder"
@@ -115,8 +115,11 @@ export default {
       get() {
         return this.rankedItems
       },
-      set(value) {
-        this.setAndLimitRankedItems(value)
+      set(rankedItems) {
+        this.setAndLimitRankedItems({
+          rankedItems,
+          routeParams: this.$route.params
+        })
       }
     },
     unrankedList: {
@@ -142,14 +145,38 @@ export default {
     ...mapGetters('itemRanking', ['allItems'])
   },
   methods: {
+    onRankedItemsChanged(rankedItems) {
+      this.setAndLimitRankedItems({
+        rankedItems,
+        routeParams: this.$route.params
+      })
+    },
+    onRankedItemClicked(item) {
+      this.moveItemToUnrankedList({
+        item,
+        routeParams: this.$route.params
+      })
+    },
+    onCreateItem(event) {
+      this.createItem(event, this.$route.params)
+    },
     onRankedItemReorder(event) {
-      this.saveItemRank(this.getItemId(event.item))
+      this.saveItemRank({
+        targetId: this.getItemId(event.item),
+        routeParams: this.$route.params
+      })
     },
     onRankedItemAdded(event) {
-      this.saveItemRank(this.getItemId(event.item))
+      this.saveItemRank({
+        targetId: this.getItemId(event.item),
+        routeParams: this.$route.params
+      })
     },
     onRankedItemRemoved(event) {
-      this.deleteItemRank(this.getItemId(event.item))
+      this.deleteItemRank({
+        targetId: this.getItemId(event.item),
+        routeParams: this.$route.params
+      })
     },
     getItemId(listItemElement) {
       return parseInt(
@@ -161,7 +188,10 @@ export default {
       // v-select @change emits a DOM Event and then the selected value on mouse click
       // we only care about the selected value
       if (value && value.item_name) {
-        this.moveItemToRankedList(value)
+        this.moveItemToRankedList({
+          item: value,
+          routeParams: this.$route.params
+        })
       }
     },
     showItemInfo(item) {
@@ -189,7 +219,11 @@ export default {
     ])
   },
   mounted() {
-    this.loadItems()
+    this.loadItems({
+      routeParams: {
+        list: this.$route.params.list
+      }
+    })
   }
 }
 </script>

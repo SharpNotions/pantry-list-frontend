@@ -3,14 +3,22 @@ import Router from 'vue-router'
 import Login from '@/components/Login'
 import ItemRanking from '@/components/ItemRanking'
 import TotalRankings from '@/components/TotalRankings'
+import Error404 from '@/components/Error404.vue'
 import auth from '@/auth'
 
 Vue.use(Router)
 
+export const DEFAULT_LIST = 'default'
+
 const router = new Router({
   routes: [
     {
-      path: '/',
+      path: '/login',
+      name: 'Login',
+      component: Login
+    },
+    {
+      path: '/list/:list/my-rankings',
       name: 'ItemRanking',
       component: ItemRanking,
       meta: {
@@ -18,7 +26,7 @@ const router = new Router({
       }
     },
     {
-      path: '/total-rankings',
+      path: '/list/:list/total-rankings',
       name: 'TotalRankings',
       component: TotalRankings,
       meta: {
@@ -26,9 +34,21 @@ const router = new Router({
       }
     },
     {
-      path: '/login',
-      name: 'Login',
-      component: Login
+      path: '/list/:list',
+      redirect: '/list/:list/my-rankings'
+    },
+    {
+      path: '/list',
+      redirect: `/list/${DEFAULT_LIST}/my-rankings`
+    },
+    {
+      path: '/not-found',
+      name: 'NotFound',
+      component: Error404
+    },
+    {
+      path: '/',
+      redirect: `/list/${DEFAULT_LIST}/my-rankings`
     }
   ],
   scrollBehavior() {
