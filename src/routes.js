@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import Login from '@/components/Login'
 import ItemRanking from '@/components/ItemRanking'
 import TotalRankings from '@/components/TotalRankings'
-import Error404 from '@/components/Error404.vue'
 import auth from '@/auth'
 
 Vue.use(Router)
@@ -40,11 +39,6 @@ const router = new Router({
     {
       path: '/list',
       redirect: `/list/${DEFAULT_LIST}/my-rankings`
-    },
-    {
-      path: '/not-found',
-      name: 'NotFound',
-      component: Error404
     },
     {
       path: '/',
