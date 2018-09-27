@@ -17,7 +17,7 @@
               <template slot="item" slot-scope="data">
                 <v-list-tile-content>
                    <v-list-tile-title v-html="data.item.item_name"></v-list-tile-title>
-                   <v-list-tile-sub-title v-html="data.item.item_details.description"></v-list-tile-sub-title>
+                   <v-list-tile-sub-title v-html="getDescription(data.item)"></v-list-tile-sub-title>
                 </v-list-tile-content>
               </template>
             </v-autocomplete>
@@ -64,7 +64,7 @@
               :options="{ group: 'ranking' }"
               @list-change="setUnrankedItems"
               @info-click="showItemInfo"
-              @item-click="moveItemToRankedList">
+              @item-click="onItemSelect">
             </draggable-item-list>
           </v-flex>
         </v-layout>
@@ -75,7 +75,7 @@
         <v-card-title primary-title>
           <div class="headline">{{ infoDialogItem.item_name }}</div>
         </v-card-title>
-        <v-card-text>{{ infoDialogItem.item_details ? infoDialogItem.item_details.description : '' }}</v-card-text>
+        <v-card-text>{{ getDescription(infoDialogItem) }}</v-card-text>
         <v-card-actions>
           <v-btn color="primary" flat @click.stop="hideItemInfo()">Close</v-btn>
         </v-card-actions>
@@ -158,7 +158,10 @@ export default {
       })
     },
     onCreateItem(event) {
-      this.createItem(event, this.$route.params)
+      this.createItem({
+        item: event,
+        routeParams: this.$route.params
+      })
     },
     onRankedItemReorder(event) {
       this.saveItemRank({
@@ -200,6 +203,9 @@ export default {
     },
     hideItemInfo() {
       this.infoDialog = false
+    },
+    getDescription(item) {
+      return item && item.item_details ? item.item_details.description : ''
     },
     ...mapActions('itemRanking', [
       'loadItems',

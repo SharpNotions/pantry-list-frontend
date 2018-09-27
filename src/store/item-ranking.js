@@ -87,9 +87,9 @@ export const actions = {
     }
     commit('setLoading', false)
   },
-  async createItem({ commit, dispatch }, { payload, routeParams }) {
+  async createItem({ commit, dispatch }, { item, routeParams }) {
     try {
-      const newItem = await api.createItem(payload, routeParams)
+      const newItem = await api.createItem(item, routeParams)
       commit('addRankedItem', newItem)
       await dispatch('saveItemRank', {
         targetId: newItem.id,
