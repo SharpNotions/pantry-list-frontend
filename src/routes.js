@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Login from '@/components/Login'
 import ItemRanking from '@/components/ItemRanking'
 import TotalRankings from '@/components/TotalRankings'
+import Lists from '@/components/Lists'
 import auth from '@/auth'
 
 Vue.use(Router)
@@ -35,6 +36,10 @@ const router = new Router({
     {
       path: '/list/:list',
       redirect: '/list/:list/my-rankings'
+    },
+    {
+      path: '/lists',
+      component: Lists
     },
     {
       path: '/list',
