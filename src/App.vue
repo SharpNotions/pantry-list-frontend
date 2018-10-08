@@ -1,8 +1,24 @@
 <template>
   <v-app>
-    <v-toolbar app fix>
+    <v-navigation-drawer fixed clipped app v-model="drawer">
+      <v-list dense>
+        <template v-for="item in items">
+        <v-list-tile :key="item.title">
+          <v-list-tile-action>
+            <v-icon>subject</v-icon>
+          </v-list-tile-action>
+
+          <v-list-tile-content>
+            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+        <v-divider :key="item.title"></v-divider>
+        </template>
+      </v-list>
+    </v-navigation-drawer>
+    <v-toolbar flat fixed app clipped-left>
       <v-toolbar-title>
-          <a href="#">
+          <a href="#" @click="drawer = !drawer">
             <img
               @transitionend="onTransitionFinish"
               :class="{ loading: loading }"
@@ -12,19 +28,20 @@
             />
             <span class="hidden-xs-only">pantry</span>
           </a>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
+        </v-toolbar-title><v-spacer></v-spacer>
       <v-toolbar-items>
         <v-btn flat to="total-rankings">Total Rankings</v-btn>
         <v-btn flat to="my-rankings">My Rankings</v-btn>
       </v-toolbar-items>
     </v-toolbar>
+    <v-progress-linear
+      :class="{ hide: true }"
+      :indeterminate="true"
+    ></v-progress-linear>
     <v-content>
-      <v-progress-linear
-        :class="{ hide: true }"
-        :indeterminate="true"
-      ></v-progress-linear>
+      <v-container fluid>
         <router-view :class="{ hide: loading }"></router-view>
+      </v-container>
     </v-content>
     <v-footer app></v-footer>
   </v-app>
@@ -34,6 +51,10 @@
 import { mapGetters } from 'vuex'
 export default {
   name: 'app',
+  data: () => ({
+    drawer: true,
+    items: [{ title: 'List 1' }, { title: 'List 2' }, { title: 'List 3' }]
+  }),
   computed: {
     ...mapGetters(['loading'])
   },
@@ -59,17 +80,11 @@ $transitionDuration: 200ms;
   }
 
   .container {
-    max-width: 720px;
     transition-property: opacity;
     transition-duration: $transitionDuration;
   }
 
   .v-toolbar {
-    &__content {
-      max-width: 720px;
-      margin: 0 auto;
-    }
-
     &__title {
       overflow: visible;
 
