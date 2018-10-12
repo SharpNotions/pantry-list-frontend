@@ -41,6 +41,18 @@ export default {
       credentials: 'include'
     }).then(response => response.json())
   },
+  listAllLists() {
+    const url = `/api/lists`
+    return fetch(url, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json'
+      },
+      credentials: 'include'
+    })
+      .then(response => response.json())
+      .then(lists => lists.filter(list => !!list.name_id))
+  },
   postItemRank(previousItemId, targetItemId, params) {
     const url = `/api/user_ranking${objToQuery(params)}`
     return fetch(url, {
