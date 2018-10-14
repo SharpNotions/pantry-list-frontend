@@ -1,5 +1,5 @@
 <template>
-  <v-layout row justify-center align-center>
+  <v-layout row>
     <v-text-field
       label="New Item"
       v-model="newLabel"

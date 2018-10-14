@@ -1,7 +1,8 @@
 <template>
   <v-app>
-    <v-navigation-drawer fixed clipped app v-model="drawer">
-      <v-list dense>
+
+    <v-navigation-drawer floating fixed clipped app class="grey lighten-5" v-model="drawer">
+      <v-list>
         <template v-for="item in items">
         <v-list-tile :key="item.title">
           <v-list-tile-action>
@@ -10,9 +11,8 @@
 
           <v-list-tile-content>
             <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-          </v-list-tile-content>
+         </v-list-tile-content>
         </v-list-tile>
-        <v-divider :key="item.title"></v-divider>
         </template>
       </v-list>
     </v-navigation-drawer>
@@ -30,11 +30,12 @@
           </a>
         </v-toolbar-title><v-spacer></v-spacer>
       <v-toolbar-items>
-        <v-btn flat to="total-rankings">Total Rankings</v-btn>
-        <v-btn flat to="my-rankings">My Rankings</v-btn>
+        <v-btn active-class="btn-active" flat to="total-rankings">Total Rankings</v-btn>
+        <v-btn active-class="btn-active" flat to="/">My Rankings</v-btn>
       </v-toolbar-items>
     </v-toolbar>
     <v-progress-linear
+      fixed
       :class="{ hide: true }"
       :indeterminate="true"
     ></v-progress-linear>
@@ -43,7 +44,6 @@
         <router-view :class="{ hide: loading }"></router-view>
       </v-container>
     </v-content>
-    <v-footer app></v-footer>
   </v-app>
 </template>
 
@@ -67,6 +67,7 @@ export default {
 </script>
 
 <style lang="scss">
+$border: 1px solid #ccc;
 $transitionDuration: 200ms;
 
 #app {
@@ -82,6 +83,10 @@ $transitionDuration: 200ms;
   .container {
     transition-property: opacity;
     transition-duration: $transitionDuration;
+  }
+
+  .v-toolbar {
+    border-bottom: $border;
   }
 
   .v-toolbar {
@@ -108,6 +113,15 @@ $transitionDuration: 200ms;
           transform: rotate(360deg);
         }
       }
+    }
+    .v-btn {
+      border-radius: 0;
+      top: 2px;
+    }
+    .btn-active {
+      background: rgb(250, 250, 250);
+      border: $border;
+      border-bottom-color: white;
     }
   }
   .v-progress-linear {

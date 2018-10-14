@@ -7,7 +7,7 @@
           <v-flex>
             <v-autocomplete
               :items="allItems"
-              label="What are you hungry for?"
+              label="Add Something"
               item-text="item_name"
               no-data-text="No items found"
               return-object
@@ -31,7 +31,6 @@
       <v-flex>
         <v-layout row justify-center>
           <v-flex>
-            <v-subheader class="title">My Ranking</v-subheader>
             <draggable-item-list
               :items="rankedList"
               :options="{ group: 'ranking', showRankNumber: true }"
