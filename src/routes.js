@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import AuthedView from '@/components/AuthedView'
 import Login from '@/components/Login'
 import ItemRanking from '@/components/ItemRanking'
 import TotalRankings from '@/components/TotalRankings'
-import Lists from '@/components/Lists'
 import auth from '@/auth'
 import http from '@/api/http'
 
@@ -19,36 +19,42 @@ const router = new Router({
       component: Login
     },
     {
-      path: '/list/:list/my-rankings',
-      name: 'ItemRanking',
-      component: ItemRanking,
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
-      path: '/list/:list/total-rankings',
-      name: 'TotalRankings',
-      component: TotalRankings,
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
-      path: '/list/:list',
-      redirect: '/list/:list/my-rankings'
-    },
-    {
-      path: '/lists',
-      component: Lists
-    },
-    {
-      path: '/list',
-      redirect: `/list/${DEFAULT_LIST}/my-rankings`
-    },
-    {
       path: '/',
-      redirect: `/list/${DEFAULT_LIST}/my-rankings`
+      name: 'AuthedView',
+      component: AuthedView,
+      meta: {
+        requiresAuth: true
+      },
+      children: [
+        {
+          path: '/list/:list',
+          redirect: '/list/:list/my-rankings'
+        },
+        {
+          path: '/list',
+          redirect: `/list/${DEFAULT_LIST}/my-rankings`
+        },
+        {
+          path: '/',
+          redirect: `/list/${DEFAULT_LIST}/my-rankings`
+        },
+        {
+          path: '/list/:list/my-rankings',
+          name: 'ItemRanking',
+          component: ItemRanking,
+          meta: {
+            requiresAuth: true
+          }
+        },
+        {
+          path: '/list/:list/total-rankings',
+          name: 'TotalRankings',
+          component: TotalRankings,
+          meta: {
+            requiresAuth: true
+          }
+        }
+      ]
     }
   ],
   scrollBehavior() {
