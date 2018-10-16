@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-snackbar v-model="hasError" color="red" top multi-line>{{ error }}</v-snackbar>
-    <v-list three-line>
+    <v-list three-line class="elevation-2">
       <v-list-tile v-for="(item, index) in items" :key="item.id" class="ranking-item">
         <v-list-tile-avatar class="title">{{ index + 1 }}</v-list-tile-avatar>
         <v-list-tile-content>
