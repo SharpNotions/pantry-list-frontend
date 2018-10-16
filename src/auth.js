@@ -11,7 +11,6 @@ export default {
     Cookie.remove('id_token')
   },
   isAuthorized() {
-    return true
     return !!Cookie.get('id_token')
   }
 }

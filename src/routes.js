@@ -27,6 +27,16 @@ const router = new Router({
       },
       children: [
         {
+          path: '/list/:list/my-rankings',
+          name: 'ItemRanking',
+          component: ItemRanking
+        },
+        {
+          path: '/list/:list/total-rankings',
+          name: 'TotalRankings',
+          component: TotalRankings
+        },
+        {
           path: '/list/:list',
           redirect: '/list/:list/my-rankings'
         },
@@ -37,22 +47,6 @@ const router = new Router({
         {
           path: '/',
           redirect: `/list/${DEFAULT_LIST}/my-rankings`
-        },
-        {
-          path: '/list/:list/my-rankings',
-          name: 'ItemRanking',
-          component: ItemRanking,
-          meta: {
-            requiresAuth: true
-          }
-        },
-        {
-          path: '/list/:list/total-rankings',
-          name: 'TotalRankings',
-          component: TotalRankings,
-          meta: {
-            requiresAuth: true
-          }
         }
       ]
     }
@@ -71,7 +65,8 @@ http.addResponseInterceptor((url, options, response) => {
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.meta.requiresAuth && !auth.isAuthorized()) {
+  const requiresAuth = to.matched.some(segment => segment.meta.requiesAuth)
+  if (requiresAuth && !auth.isAuthorized()) {
     next({ path: '/login', query: { redirect: to.fullPath } })
   } else {
     next()

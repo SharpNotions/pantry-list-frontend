@@ -1,21 +1,8 @@
 <template>
-
-    <v-layout>
-      <v-flex>
+  <v-layout>
+    <v-flex>
       <v-navigation-drawer floating fixed clipped app class="grey lighten-5" v-model="drawer">
-        <v-list>
-          <template v-for="item in items">
-          <v-list-tile :key="item.title">
-            <v-list-tile-action>
-              <v-icon>subject</v-icon>
-            </v-list-tile-action>
-
-            <v-list-tile-content>
-              <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-           </v-list-tile-content>
-          </v-list-tile>
-          </template>
-        </v-list>
+        <lists></lists>
       </v-navigation-drawer>
       <v-toolbar flat fixed app clipped-left>
         <v-toolbar-title>
@@ -29,8 +16,8 @@
             </a>
           </v-toolbar-title><v-spacer></v-spacer>
         <v-toolbar-items>
-          <v-btn active-class="btn-active" flat to="total-rankings">Total Rankings</v-btn>
-          <v-btn active-class="btn-active" flat to="/">My Rankings</v-btn>
+          <v-btn active-class="btn-active" flat to="./total-rankings">total rankings</v-btn>
+          <v-btn active-class="btn-active" flat to="./my-rankings">my rankings</v-btn>
         </v-toolbar-items>
       </v-toolbar>
       <v-progress-linear
@@ -44,13 +31,15 @@
         </v-container>
       </v-content>
     </v-flex>
-    </v-layout>
+  </v-layout>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import Lists from '@/components/Lists'
 export default {
-  name: 'app',
+  name: 'authed-view',
+  components: { Lists },
   data: () => ({
     drawer: true,
     items: [{ title: 'List 1' }, { title: 'List 2' }, { title: 'List 3' }]
