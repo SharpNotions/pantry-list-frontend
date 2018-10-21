@@ -8,7 +8,7 @@
         </v-list-tile-title>
       </v-list-tile-content>
     </v-list-tile>
-    <v-list-tile v-for="(list, index) in allLists" :key="list.id" class="list" @click="selectList" :data-index="index">
+    <v-list-tile v-for="list in allLists" :key="list.id" class="list" @click="selectList(list)">
       <v-list-tile-action>
         <v-icon>subject</v-icon>
       </v-list-tile-action>
@@ -37,9 +37,12 @@ export default {
   methods: {
     ...mapActions('lists', ['loadAllLists']),
     selectList(list) {
-      console.log('LIST: ', list)
+      const isValidRouteName = ['ItemRanking', 'TotalRankings'].includes(
+        this.$route.name
+      )
+      const routeName = isValidRouteName ? this.$route.name : 'TotalRankings'
       this.$router.push({
-        name: 'ItemRanking',
+        name: routeName,
         params: {
           list: list.name_id
         }

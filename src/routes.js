@@ -59,7 +59,9 @@ const router = new Router({
 http.addResponseInterceptor((url, options, response) => {
   if (response.status === 401) {
     auth.unauthorize()
-    router.push('Login')
+    router.push({
+      name: 'Login'
+    })
   }
   return response
 })

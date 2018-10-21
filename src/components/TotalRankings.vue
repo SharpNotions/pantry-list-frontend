@@ -27,16 +27,24 @@ export default {
       set() {}
     }
   },
+  watch: {
+    $route: 'fetchData'
+  },
+  created() {
+    this.loadItems({
+      routeParams: this.$route.params
+    })
+  },
   methods: {
+    fetchData() {
+      this.loadItems({
+        routeParams: this.$route.params
+      })
+    },
     getDescription(item) {
       return item && item.item_details ? item.item_details.description : ''
     },
     ...mapActions('totalRankings', ['loadItems'])
-  },
-  mounted() {
-    this.loadItems({
-      routeParams: this.$route.params
-    })
   }
 }
 </script>

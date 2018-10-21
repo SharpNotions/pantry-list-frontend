@@ -1,5 +1,5 @@
 <template>
-  <v-container grid-list-lg>
+  <v-container grid-list-sm>
     <v-snackbar v-model="hasError" color="red" top multi-line>{{ error }}</v-snackbar>
     <v-layout column>
       <v-flex>
@@ -120,6 +120,12 @@ export default {
     ]),
     ...mapGetters('itemRanking', ['allItems'])
   },
+  watch: {
+    $route: 'fetchData'
+  },
+  created() {
+    this.fetchData()
+  },
   methods: {
     onRankedItemsChanged(rankedItems) {
       this.setAndLimitRankedItems({
@@ -183,6 +189,13 @@ export default {
     getDescription(item) {
       return item && item.item_details ? item.item_details.description : ''
     },
+    fetchData() {
+      this.loadItems({
+        routeParams: {
+          list: this.$route.params.list
+        }
+      })
+    },
     ...mapActions('itemRanking', [
       'loadItems',
       'createItem',
@@ -199,13 +212,6 @@ export default {
       'addUnrankedItem',
       'removeUnrankedItem'
     ])
-  },
-  mounted() {
-    this.loadItems({
-      routeParams: {
-        list: this.$route.params.list
-      }
-    })
   }
 }
 </script>

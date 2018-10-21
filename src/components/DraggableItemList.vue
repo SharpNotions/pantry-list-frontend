@@ -1,5 +1,5 @@
 <template>
-  <v-list three-line :class="{ empty: list.length === 0, 'elevation-1': true }">
+  <v-list dense three-line :class="{ empty: list.length === 0, 'elevation-1': true }">
     <draggable
       v-model="list"
       :options="options"

@@ -5,15 +5,13 @@
         <lists></lists>
       </v-navigation-drawer>
       <v-toolbar flat fixed app clipped-left>
-        <v-toolbar-title>
-            <a href="#" @click="drawer = !drawer">
-              <img
-                src="../assets/pantry-logo.svg"
-                alt="pantry"
-                height="45px"
-              />
-              <span class="hidden-xs-only">pantry</span>
-            </a>
+        <v-toolbar-title @click="drawer = !drawer">
+          <img
+            src="../assets/pantry-logo.svg"
+            alt="pantry"
+            height="45px"
+          />
+          <span class="hidden-xs-only">pantry</span>
           </v-toolbar-title><v-spacer></v-spacer>
         <v-toolbar-items>
           <v-btn active-class="btn-active" flat to="./total-rankings">total rankings</v-btn>
@@ -42,7 +40,7 @@ export default {
   components: { Lists },
   data: () => ({
     drawer: true,
-    items: [{ title: 'List 1' }, { title: 'List 2' }, { title: 'List 3' }]
+    items: []
   }),
   computed: {
     ...mapGetters(['loading'])
@@ -72,17 +70,15 @@ $transitionDuration: 200ms;
   .v-toolbar {
     &__title {
       overflow: visible;
-
-      a {
-        font-family: CircularStd-Black, Circular Std, 'Avenir', Helvetica, Arial,
-          sans-serif;
-        font-weight: 900;
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        font-size: 2em;
-        color: #333;
-      }
+      font-family: CircularStd-Black, Circular Std, 'Avenir', Helvetica, Arial,
+        sans-serif;
+      font-weight: 900;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      font-size: 2em;
+      color: #333;
+      cursor: default;
 
       img {
         width: 1em;
