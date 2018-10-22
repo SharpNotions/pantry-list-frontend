@@ -21,5 +21,6 @@ export default {
     await Promise.all(
       this.listeners.response.map(listener => listener(url, options, response))
     )
+    return response
   }
 }

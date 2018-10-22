@@ -5,6 +5,7 @@ import ItemRanking from '@/components/ItemRanking'
 import TotalRankings from '@/components/TotalRankings'
 import Lists from '@/components/Lists'
 import auth from '@/auth'
+import http from '@/api/http'
 
 Vue.use(Router)
 
@@ -53,6 +54,14 @@ const router = new Router({
   scrollBehavior() {
     return { x: 0, y: 0 }
   }
+})
+
+http.addResponseInterceptor((url, options, response) => {
+  if (response.status === 401) {
+    auth.unauthorize()
+    router.push('Login')
+  }
+  return response
 })
 
 router.beforeEach((to, from, next) => {
