@@ -1,6 +1,7 @@
 {
   "plugins": ["prettier", "standard"],
   "globals": {
+    "afterAll": true,
     "beforeAll": true,
     "beforeEach": true,
     "describe": true,
