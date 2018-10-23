@@ -16,9 +16,6 @@ export default {
     return http
       .fetch(url, {
         method: 'POST',
-        headers: {
-          'content-type': 'application/json'
-        },
         credentials: 'include',
         body: JSON.stringify(payload)
       })
@@ -29,9 +26,6 @@ export default {
     return http
       .fetch(url, {
         method: 'GET',
-        headers: {
-          'content-type': 'application/json'
-        },
         credentials: 'include'
       })
       .then(response => response.json())
@@ -41,9 +35,6 @@ export default {
     return http
       .fetch(url, {
         method: 'GET',
-        headers: {
-          'content-type': 'application/json'
-        },
         credentials: 'include'
       })
       .then(response => response.json())
@@ -53,9 +44,6 @@ export default {
     return http
       .fetch(url, {
         method: 'GET',
-        headers: {
-          'content-type': 'application/json'
-        },
         credentials: 'include'
       })
       .then(response => response.json())
@@ -66,9 +54,6 @@ export default {
     return http
       .fetch(url, {
         method: 'POST',
-        headers: {
-          'content-type': 'application/json'
-        },
         credentials: 'include',
         body: JSON.stringify({
           prev_item_id: previousItemId,
@@ -81,9 +66,6 @@ export default {
     const url = `/api/user_ranking${objToQuery(params)}`
     return http.fetch(url, {
       method: 'DELETE',
-      headers: {
-        'content-type': 'application/json'
-      },
       credentials: 'include',
       body: JSON.stringify({
         item_id: targetItemId

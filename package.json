@@ -23,6 +23,7 @@
     "apollo-link": "^1.2.1",
     "apollo-link-context": "^1.0.7",
     "apollo-link-http": "^1.5.3",
+    "deepmerge": "^2.2.1",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.8.0",
     "js-cookie": "^2.2.0",

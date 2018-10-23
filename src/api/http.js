@@ -1,4 +1,11 @@
+import merge from 'deepmerge'
+
 export default {
+  defaultOptions: {
+    headers: {
+      'content-type': 'application/json'
+    }
+  },
   listeners: {
     request: [],
     response: []
@@ -13,7 +20,8 @@ export default {
   addResponseInterceptor: function(listener) {
     this.listeners.response.push(listener)
   },
-  fetch: async function(url, options) {
+  fetch: async function(url, overrideOptions = {}) {
+    const options = merge(this.defaultOptions, overrideOptions)
     await Promise.all(
       this.listeners.request.map(listener => listener(url, options))
     )
