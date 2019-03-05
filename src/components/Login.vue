@@ -1,12 +1,22 @@
 <template>
-  <v-container>
-    <v-layout align-center column>
-      <p align="center">
-        Halt!  Who goes there!?!?
-        <br />
-        <span class="caption">(To login, use a valid Sharp Notions email address.)</span>
-      </p>
-      <div id="g-signin2"> </div>
+  <v-container fill-height>
+    <v-layout align-center justify-center column>
+      <h1 class="site-title mb-2">
+        <img
+          src="../assets/pantry-logo.svg"
+          alt="pantry"
+          width="50px"
+        />
+        <span>pantry</span>
+      </h1>
+      <v-card class="pa-2">
+        <v-card-text>
+         To login, use a valid Sharp Notions email address.
+        </v-card-text>
+        <v-card-actions style="justify-content: center;">
+          <div id="g-signin2"></div>
+        </v-card-actions>
+      </v-card>
     </v-layout>
   </v-container>
 </template>
@@ -50,6 +60,13 @@ export default {
 </script>
 
 <style lang="scss">
+.site-title {
+  display: flex;
+  font-size: 48px;
+  span {
+    margin-left: 0.5em;
+  }
+}
 #g-signin2 {
   display: flex;
   justify-content: center;

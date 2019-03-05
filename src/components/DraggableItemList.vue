@@ -1,5 +1,5 @@
 <template>
-  <v-list three-line :class="{ empty: list.length === 0 }">
+  <v-list dense three-line :class="{ empty: list.length === 0, 'elevation-1': true }">
     <draggable
       v-model="list"
       :options="options"
@@ -74,16 +74,14 @@ export default {
 .draggable-list {
   min-height: 70px;
 }
-.list {
-  &.empty {
-    background: none;
-  }
+.v-list {
+  padding: 0;
 }
 .v-list__tile__avatar {
   margin-top: 0px;
 }
 .list-item {
-  padding: 14px 0px;
+  padding: 0;
 }
 .list-item + .list-item {
   border-top: 1px lightgrey solid;

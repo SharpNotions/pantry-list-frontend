@@ -8,8 +8,8 @@ import itemRanking from './item-ranking'
 import totalRankings from './total-rankings'
 import lists from './lists'
 
-LogRocket.init('10-hour-project/pantry-list')
-const logrocketPlugin = createPlugin(LogRocket)
+// LogRocket.init('10-hour-project/pantry-list')
+// const logrocketPlugin = createPlugin(LogRocket)
 
 Vue.use(Vuex)
 
@@ -27,6 +27,6 @@ export default new Vuex.Store({
         state.lists.loading
       )
     }
-  },
-  plugins: [logrocketPlugin]
+  } // ,
+  // plugins: [logrocketPlugin]
 })

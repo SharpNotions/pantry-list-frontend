@@ -8,7 +8,6 @@ export const defaultState = {
 
 export const mutations = {
   setLists(state, allLists) {
-    console.log('setting', allLists)
     state.allLists = allLists
   },
   setLoading(state, isLoading) {

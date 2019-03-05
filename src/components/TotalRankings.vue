@@ -1,8 +1,7 @@
 <template>
   <v-container>
     <v-snackbar v-model="hasError" color="red" top multi-line>{{ error }}</v-snackbar>
-    <v-subheader class="headline">Total Rankings</v-subheader>
-    <v-list three-line>
+    <v-list three-line class="elevation-2">
       <v-list-tile v-for="(item, index) in items" :key="item.id" class="ranking-item">
         <v-list-tile-avatar class="title">{{ index + 1 }}</v-list-tile-avatar>
         <v-list-tile-content>
@@ -28,16 +27,24 @@ export default {
       set() {}
     }
   },
+  watch: {
+    $route: 'fetchData'
+  },
+  created() {
+    this.loadItems({
+      routeParams: this.$route.params
+    })
+  },
   methods: {
+    fetchData() {
+      this.loadItems({
+        routeParams: this.$route.params
+      })
+    },
     getDescription(item) {
       return item && item.item_details ? item.item_details.description : ''
     },
     ...mapActions('totalRankings', ['loadItems'])
-  },
-  mounted() {
-    this.loadItems({
-      routeParams: this.$route.params
-    })
   }
 }
 </script>

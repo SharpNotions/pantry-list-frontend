@@ -1,26 +1,30 @@
 <template>
-  <v-container>
-    <v-snackbar v-model="hasError" color="red" top multi-line>{{ error }}</v-snackbar>
-    <v-subheader class="headline">All Lists</v-subheader>
-    <v-list three-line>
-      <v-list-tile v-for="(list, index) in allLists" :key="list.id" class="list">
-        <v-list-tile-avatar class="title">{{ index + 1 }}</v-list-tile-avatar>
-        <v-list-tile-content>
-          <v-list-tile-title v-text="list.name_id"></v-list-tile-title>
-          <v-list-tile-sub-title>
-            <a v-bind:href="getListLink(list)">View List</a>
-          </v-list-tile-sub-title>
-        </v-list-tile-content>
-      </v-list-tile>
-    </v-list>
-  </v-container>
+  <div>
+  <v-list dense class="mt-3">
+    <v-list-tile v-if="loading">
+      <v-list-tile-content>
+        <v-list-tile-title>
+          Loading Lists...
+        </v-list-tile-title>
+      </v-list-tile-content>
+    </v-list-tile>
+    <v-list-tile v-for="list in allLists" :key="list.id" class="list" @click="selectList(list)">
+      <v-list-tile-action>
+        <v-icon>subject</v-icon>
+      </v-list-tile-action>
+      <v-list-tile-content>
+        <v-list-tile-title v-text="list.name_id"></v-list-tile-title>
+      </v-list-tile-content>
+    </v-list-tile>
+  </v-list>
+  </div>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex'
 
 export default {
-  name: 'total-rankings',
+  name: 'lists',
   computed: {
     ...mapState('lists', ['allLists', 'error', 'loading']),
     hasError: {
@@ -32,6 +36,18 @@ export default {
   },
   methods: {
     ...mapActions('lists', ['loadAllLists']),
+    selectList(list) {
+      const isValidRouteName = ['ItemRanking', 'TotalRankings'].includes(
+        this.$route.name
+      )
+      const routeName = isValidRouteName ? this.$route.name : 'TotalRankings'
+      this.$router.push({
+        name: routeName,
+        params: {
+          list: list.name_id
+        }
+      })
+    },
     getListLink(list) {
       return `/#/list/${list.name_id}/my-rankings`
     }
