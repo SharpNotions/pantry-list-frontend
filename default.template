@@ -1,4 +1,5 @@
 server {
+  listen ${PORT};
   root /usr/share/nginx/html;
 
   location / {

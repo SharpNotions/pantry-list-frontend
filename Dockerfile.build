@@ -13,7 +13,10 @@ RUN npm install && npm run build
 # NGINX image
 FROM nginx:latest
 COPY --from=builder /usr/src/app/dist /usr/share/nginx/html/dist
-COPY default.conf /etc/nginx/conf.d/
+COPY default.template /etc/nginx/conf.d/
 COPY index.html /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+COPY docker-entrypoint.sh /
+RUN chmod u+x /docker-entrypoint.sh
+# EXPOSE 80
+ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD ["sh", "-c"]
