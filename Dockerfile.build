@@ -17,6 +17,6 @@ COPY default.template /etc/nginx/conf.d/
 COPY index.html /usr/share/nginx/html
 COPY docker-entrypoint.sh /
 RUN chmod u+x /docker-entrypoint.sh
-# EXPOSE 80
+
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["sh", "-c"]
