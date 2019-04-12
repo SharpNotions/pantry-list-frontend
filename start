@@ -4,7 +4,7 @@ function start_dev() {
   docker-compose run dev npm run dev
 }
 
-function unit_test() {
+function start_unit_test() {
   docker-compose run dev npm run test
 }
 
@@ -12,7 +12,7 @@ function unit_test() {
 case "$1" in
   init) shift; init $@
   ;;
-  start) shift; start_dev $@
+  dev) shift; start_dev $@
   ;;
-  test) shift; unit_test $@
+  test) shift; start_unit_test $@
 esac;
