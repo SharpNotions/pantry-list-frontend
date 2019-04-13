@@ -1,7 +1,10 @@
 #!/bin/sh
+function init() {
+  docker-compose build
+}
 
 function start_dev() {
-  docker-compose run dev npm run dev
+  docker-compose up dev $@
 }
 
 function start_unit_test() {
