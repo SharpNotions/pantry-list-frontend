@@ -7,16 +7,11 @@ services:
     volumes:
       - ".:/usr/src/app"
       - "pantry-ui-node-modules:/usr/src/app/node_modules"
-    networks:
-      - pantry-list
     ports:
       - "8080:8080"
     environment:
       - NODE_ENV=development
     command: npm run dev
-
-networks:
-  pantry-list:
 
 volumes:
   pantry-ui-node-modules:
