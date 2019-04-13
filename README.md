@@ -1,6 +1,8 @@
-# pantry-list-frontend
-
-> A Vue-based UI for the Pantry List app.
+<div align="center">
+  <img src="https://github.com/SharpNotions/pantry-list-frontend/blob/master/src/assets/pantry-logo.svg" />
+  <h1>Pantry List Frontend</h1>
+  <p>A Vue-based UI for the Pantry List app.</p1>
+</div>
 
 ## Build Setup
 
