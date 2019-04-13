@@ -4,8 +4,9 @@
 
 ## Development Setup
 
-Start the development server: `./start dev`
-Run unit tests: `./start test`
+1.  Initialize the development services with `./start init`
+2.  Start the development server: `./start dev`
+3.  Run unit tests: `./start test`
 
 By default, `webpack-dev-server` proxies all API requests to the production server.
 
