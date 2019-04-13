@@ -14,7 +14,6 @@
         avatar
         v-for="(item, index) in list" :key="item.item_name"
         :data-item-id="item.id"
-        @click="$emit('item-click', item)"
         class="list-item">
         <v-list-tile-avatar v-if="options.showRankNumber">
           <v-avatar size=30 color="grey">
@@ -25,7 +24,14 @@
           <v-list-tile-title v-text="item.item_name"></v-list-tile-title>
           <v-list-tile-sub-title v-if="item.item_details" v-text="item.item_details.description"></v-list-tile-sub-title>
         </v-list-tile-content>
-
+        <v-list-tile-action>
+          <v-btn
+            icon
+            ripple
+            @click="$emit('item-unrank', item)">
+            <v-icon color="grey">eject</v-icon>
+          </v-btn>
+        </v-list-tile-action>
       </v-list-tile>
     </draggable>
   </v-list>

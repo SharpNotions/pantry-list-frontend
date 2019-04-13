@@ -36,7 +36,7 @@
               :options="{ group: 'ranking', showRankNumber: true }"
               @list-change="onRankedItemsChanged"
               @info-click="showItemInfo"
-              @item-click="onRankedItemClicked"
+              @item-unrank="onUnrankItem"
               @add="onRankedItemAdded"
               @remove="onRankedItemRemoved"
               @update="onRankedItemReorder"
@@ -46,6 +46,29 @@
         </v-layout>
       </v-flex>
     </v-layout>
+    <v-dialog v-model="confirmUnrankDialog" max-width="500px">
+      <v-card>
+        <v-card-title primary-title>
+          <div class="headline">Unrank Item</div>
+        </v-card-title>
+        <v-card-text>
+          Do you want to unrank the item "{{ selectedItem.item_name}}"?
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer />
+          <v-btn
+            color="primary"
+            flat
+            @click.stop="onConfirmUnrankItem(selectedItem)">Yep
+          </v-btn>
+          <v-btn
+            color="secondary"
+            flat
+            @click.stop="onConfirmUnrankItem(null)">Nope
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
     <v-dialog v-model="infoDialog" max-width="500px">
       <v-card>
         <v-card-title primary-title>
@@ -81,9 +104,10 @@ export default {
         group: 'ranking',
         sort: true
       },
+      confirmUnrankDialog: false,
       infoDialog: false,
       infoDialogItem: {},
-      selectedItem: null
+      selectedItem: {}
     }
   },
   computed: {
@@ -133,11 +157,19 @@ export default {
         routeParams: this.$route.params
       })
     },
-    onRankedItemClicked(item) {
-      this.moveItemToUnrankedList({
-        item,
-        routeParams: this.$route.params
-      })
+    onUnrankItem(item) {
+      this.confirmUnrankDialog = true
+      this.selectedItem = item
+    },
+    onConfirmUnrankItem(item) {
+      this.confirmUnrankDialog = false
+      this.selectedItem = {}
+      if (item) {
+        this.moveItemToUnrankedList({
+          item,
+          routeParams: this.$route.params
+        })
+      }
     },
     onCreateItem(event) {
       this.createItem({
