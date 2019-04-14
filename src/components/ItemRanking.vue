@@ -35,10 +35,8 @@
               :items="rankedList"
               :options="{ group: 'ranking', showRankNumber: true }"
               @list-change="onRankedItemsChanged"
-              @info-click="showItemInfo"
               @item-unrank="onUnrankItem"
               @add="onRankedItemAdded"
-              @remove="onRankedItemRemoved"
               @update="onRankedItemReorder"
             >
             </draggable-item-list>
@@ -69,17 +67,6 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <v-dialog v-model="infoDialog" max-width="500px">
-      <v-card>
-        <v-card-title primary-title>
-          <div class="headline">{{ infoDialogItem.item_name }}</div>
-        </v-card-title>
-        <v-card-text>{{ getDescription(infoDialogItem) }}</v-card-text>
-        <v-card-actions>
-          <v-btn color="primary" flat @click.stop="hideItemInfo()">Close</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
   </v-container>
 </template>
 
@@ -100,13 +87,7 @@ export default {
         group: 'ranking',
         sort: true
       },
-      unrankedListOptions: {
-        group: 'ranking',
-        sort: true
-      },
       confirmUnrankDialog: false,
-      infoDialog: false,
-      infoDialogItem: {},
       selectedItem: {}
     }
   },
@@ -120,14 +101,6 @@ export default {
           rankedItems,
           routeParams: this.$route.params
         })
-      }
-    },
-    unrankedList: {
-      get() {
-        return this.unrankedItems
-      },
-      set(value) {
-        this.setUnrankedItems(value)
       }
     },
     hasError: {
@@ -189,12 +162,6 @@ export default {
         routeParams: this.$route.params
       })
     },
-    onRankedItemRemoved(event) {
-      this.deleteItemRank({
-        targetId: this.getItemId(event.item),
-        routeParams: this.$route.params
-      })
-    },
     getItemId(listItemElement) {
       return parseInt(
         listItemElement.firstChild.attributes['data-item-id'].nodeValue,
@@ -210,13 +177,6 @@ export default {
           routeParams: this.$route.params
         })
       }
-    },
-    showItemInfo(item) {
-      this.infoDialog = true
-      this.infoDialogItem = item
-    },
-    hideItemInfo() {
-      this.infoDialog = false
     },
     getDescription(item) {
       return item && item.item_details ? item.item_details.description : ''
