@@ -6,17 +6,11 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --host 0.0.0.0 --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
     "format": "./node_modules/.bin/prettier --write 'src/**/*.@(js|vue)'",
     "test": "cross-env NODE_ENV=test ./node_modules/.bin/jest",
     "test-watch": "cross-env NODE_ENV=test ./node_modules/.bin/jest --watch"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit":
-        "./node_modules/.bin/pretty-quick --staged 'src/**/*.@(js|vue)'"
-    }
   },
   "dependencies": {
     "apollo-cache-inmemory": "^1.1.12",
@@ -74,7 +68,6 @@
     "eslint-plugin-vue": "^4.3.0",
     "file-loader": "^1.1.4",
     "hoek": "^5.0.3",
-    "husky": "^0.15.0-rc.13",
     "jest": "^22.4.3",
     "jest-transform-graphql": "^2.1.0",
     "merge": "^1.2.1",

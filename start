@@ -1,0 +1,21 @@
+#!/bin/sh
+function init() {
+  docker-compose build
+  docker-compose run dev npm install
+}
+
+function start_dev() {
+  docker-compose up dev $@
+}
+
+function start_unit_test() {
+  docker-compose run dev npm run test
+}
+
+case "$1" in
+  init) shift; init $@
+  ;;
+  dev) shift; start_dev $@
+  ;;
+  test) shift; start_unit_test $@
+esac;
