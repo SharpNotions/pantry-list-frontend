@@ -25,12 +25,18 @@
           <v-list-tile-sub-title v-if="item.item_details" v-text="item.item_details.description"></v-list-tile-sub-title>
         </v-list-tile-content>
         <v-list-tile-action>
-          <v-btn
-            icon
-            ripple
-            @click="$emit('item-unrank', item)">
-            <v-icon color="grey">eject</v-icon>
-          </v-btn>
+          <v-tooltip left>
+            <template slot="activator" slot-scope="{ on }">
+              <v-btn
+                icon
+                ripple
+                v-on="on"
+                @click="$emit('item-unrank', item)">
+                <v-icon color="grey">remove_circle</v-icon>
+              </v-btn>
+            </template>
+            <span>Unrank Item</span>
+          </v-tooltip>
         </v-list-tile-action>
       </v-list-tile>
     </draggable>
