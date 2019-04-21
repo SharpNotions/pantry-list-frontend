@@ -19,9 +19,4 @@ To play with `GraphQL`, go to https://pantry-list-api.herokuapp.com/graphiql
 
 # Deploying
 
-Deployments are done using Heroku.
-
-```
-heroku container:push web --app=pantry-list-frontend
-heroku container:release web --app=pantry-list-frontend
-```
+Deployments happen automatically when `push` events are made to the `master` branch.
