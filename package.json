@@ -31,21 +31,36 @@
     "vuetify": "^1.5.11",
     "vuex": "^3.0.1"
   },
-  "browserslist": ["> 1%", "last 2 versions", "not ie <= 8"],
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
   "jest": {
-    "roots": ["src", "test"],
+    "roots": [
+      "src",
+      "test"
+    ],
     "testURL": "http://localhost/",
-    "moduleDirectories": ["node_modules"],
+    "moduleDirectories": [
+      "node_modules"
+    ],
     "moduleNameMapper": {
       "^@/(.*)": "<rootDir>/src/$1"
     },
-    "moduleFileExtensions": ["js", "json", "vue"],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "vue"
+    ],
     "transform": {
       "\\.(gql|graphql)$": "jest-transform-graphql",
       ".*\\.(vue)$": "vue-jest",
       ".*": "babel-jest"
     },
-    "setupFiles": ["<rootDir>/test/setup-jest"]
+    "setupFiles": [
+      "<rootDir>/test/setup-jest"
+    ]
   },
   "devDependencies": {
     "@vue/test-utils": "^1.0.0-beta.12",
@@ -71,7 +86,7 @@
     "jest": "^22.4.3",
     "jest-transform-graphql": "^2.1.0",
     "merge": "^1.2.1",
-    "node-sass": "^4.5.3",
+    "node-sass": "^4.10.0",
     "prettier": "1.11.1",
     "pretty-quick": "^1.4.1",
     "sass-loader": "^6.0.6",
@@ -84,6 +99,6 @@
   },
   "engine-strict": true,
   "engines": {
-    "node": ">=7.2.0"
+    "node": ">=10.0.0"
   }
 }

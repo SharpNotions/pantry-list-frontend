@@ -1,0 +1,52 @@
+version: 2.1
+jobs:
+  test:
+    docker:
+      - image: node:11
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: Install dependencies
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: Run tests
+          command: npm run test
+
+  deploy:
+    machine: true
+    steps:
+      - checkout
+
+      - run:
+          name: Build Docker image
+          command: |
+            ln -s Dockerfile.build Dockerfile
+            docker build -t pantry-list-frontend:latest .
+
+      - run:
+          name: Push to Heroku
+          command: |
+            docker login --username $HEROKU_USERNAME --password $HEROKU_PASSWORD registry.heroku.com
+            docker tag pantry-list-frontend:latest registry.heroku.com/$HEROKU_APP_NAME/web
+            docker push registry.heroku.com/$HEROKU_APP_NAME/web
+            chmod +x ./scripts/ci/trigger_heroku_release.sh
+            ./scripts/ci/trigger_heroku_release.sh
+
+workflows:
+  version: 2
+  test_deploy:
+    jobs:
+      - test
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
+
