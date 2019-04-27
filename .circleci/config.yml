@@ -40,9 +40,18 @@ jobs:
 
 workflows:
   version: 2
+  test_pr:
+    jobs:
+      - test:
+          filters:
+            branches:
+              ignore: master
   test_deploy:
     jobs:
-      - test
+      - test:
+          filters:
+            branches:
+              only: master
       - deploy:
           requires:
             - test
