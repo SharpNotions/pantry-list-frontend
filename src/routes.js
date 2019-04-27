@@ -67,7 +67,7 @@ http.addResponseInterceptor((url, options, response) => {
 })
 
 router.beforeEach((to, from, next) => {
-  const requiresAuth = to.matched.some(segment => segment.meta.requiesAuth)
+  const requiresAuth = to.matched.some(segment => segment.meta.requiresAuth)
   if (requiresAuth && !auth.isAuthorized()) {
     next({ path: '/login', query: { redirect: to.fullPath } })
   } else {

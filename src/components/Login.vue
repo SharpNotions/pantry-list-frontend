@@ -52,7 +52,10 @@ export default {
       if (hd === 'sharpnotions.com') {
         const { id_token, expires_in } = user.getAuthResponse()
         auth.authorize(id_token, expires_in)
-        this.$router.replace(this.$route.query.redirect || DEFAULT_URL)
+        this.$router.replace(
+          decodeURIComponent(this.$route.query.redirect)
+          || DEFAULT_URL
+        )
       }
     }
   }
