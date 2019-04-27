@@ -1,5 +1,5 @@
 # Builder image
-FROM node:latest AS builder
+FROM node:11 AS builder
 RUN mkdir /usr/src/app
 WORKDIR /usr/src/app
 ENV PATH /usr/src/app/node_modules:$PATH
